@@ -1,0 +1,60 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* Root text aligns to the inline start edge in both LTR and RTL */
+html {
+  text-align: start;
+}
+
+/* Admin data tables — tuned for 150% zoom on ~1920×1200 laptops */
+:root {
+  --admin-table-min-width: 52rem;
+}
+
+.admin-table {
+  text-align: start;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
+
+.admin-table thead {
+  background-color: #e8e8e8;
+  font-size: 0.6875rem;
+  line-height: 1.25;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #8c8c8c;
+}
+
+.admin-table th {
+  padding: 0.625rem 0.75rem;
+  font-weight: 500;
+  text-align: start;
+  white-space: normal;
+  vertical-align: bottom;
+}
+
+.admin-table th.text-end,
+.admin-table td.text-end {
+  text-align: end;
+}
+
+.admin-table td {
+  padding: 0.625rem 0.75rem;
+  vertical-align: top;
+}
+
+@media (min-width: 1441px) {
+  .admin-table th {
+    padding: 0.75rem 1rem;
+  }
+
+  .admin-table td {
+    padding: 0.75rem 1rem;
+  }
+}

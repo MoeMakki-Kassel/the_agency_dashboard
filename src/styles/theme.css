@@ -1,0 +1,237 @@
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * TheAgencyJo theme — red + black with gradient-friendly palette.
+ *
+ * The named aliases (--terracotta, --bone, --warm-amber, etc.) are kept
+ * with the original names but **repurposed** to the new palette so existing
+ * `bg-terracotta` / `text-bone` / etc. class usages keep rendering with the
+ * new brand colors automatically — no project-wide find/replace needed.
+ *
+ *   --terracotta     → signature red (#DC2626)   (was warm orange)
+ *   --warm-amber     → bright red   (#EF4444)    (was gold)
+ *   --stage-crimson  → deep red    (#7F1D1D)     (kept similar)
+ *   --olive          → ember red   (#B91C1C)     (was green; now gradient midpoint)
+ *   --bone           → off-white   (#FAFAFA)
+ *   --deep-charcoal  → zinc-900    (#18181B)
+ *   --warm-gray      → soft gray   (#E4E4E7)
+ *   --mid-gray       → zinc-500    (#71717A)
+ */
+
+:root {
+  --font-size: 16px;
+  --background: #FAFAFA;
+  --foreground: #0A0A0A;
+  --card: #FFFFFF;
+  --card-foreground: #0A0A0A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0A0A0A;
+  --primary: #DC2626;
+  --primary-foreground: #FFFFFF;
+  --secondary: #18181B;
+  --secondary-foreground: #FAFAFA;
+  --muted: #F4F4F5;
+  --muted-foreground: #71717A;
+  --accent: #7F1D1D;
+  --accent-foreground: #FFFFFF;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #E4E4E7;
+  --input: #FFFFFF;
+  --input-background: #FFFFFF;
+  --switch-background: #E4E4E7;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #DC2626;
+  --radius: 12px;
+
+  --ink-black: #0A0A0A;
+  --bone: #FAFAFA;
+  --pure-white: #FFFFFF;
+  --terracotta: #DC2626;
+  --warm-amber: #EF4444;
+  --stage-crimson: #7F1D1D;
+  --warm-gray: #E4E4E7;
+  --mid-gray: #71717A;
+  --deep-charcoal: #18181B;
+  --olive: #B91C1C;
+  --brick-red: #EF4444;
+}
+
+.dark {
+  --background: #0A0A0A;
+  --foreground: #FAFAFA;
+  --card: #18181B;
+  --card-foreground: #FAFAFA;
+  --popover: #18181B;
+  --popover-foreground: #FAFAFA;
+  --primary: #EF4444;
+  --primary-foreground: #FFFFFF;
+  --secondary: #27272A;
+  --secondary-foreground: #FAFAFA;
+  --muted: #27272A;
+  --muted-foreground: #A1A1AA;
+  --accent: #B91C1C;
+  --accent-foreground: #FFFFFF;
+  --destructive: #F87171;
+  --destructive-foreground: #0A0A0A;
+  --border: #27272A;
+  --input: #18181B;
+  --ring: #EF4444;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: #DC2626;
+  --chart-2: #EF4444;
+  --chart-3: #B91C1C;
+  --chart-4: #7F1D1D;
+  --chart-5: #71717A;
+  --sidebar: #0A0A0A;
+  --sidebar-foreground: #FAFAFA;
+  --sidebar-primary: #DC2626;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #27272A;
+  --sidebar-accent-foreground: #FAFAFA;
+  --sidebar-border: #27272A;
+  --sidebar-ring: #EF4444;
+}
+
+@theme inline {
+  --font-sans: 'Inter', 'Tajawal', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-arabic: 'Tajawal', sans-serif;
+  --color-ink-black: var(--ink-black);
+  --color-bone: var(--bone);
+  --color-pure-white: var(--pure-white);
+  --color-terracotta: var(--terracotta);
+  --color-warm-amber: var(--warm-amber);
+  --color-stage-crimson: var(--stage-crimson);
+  --color-warm-gray: var(--warm-gray);
+  --color-mid-gray: var(--mid-gray);
+  --color-deep-charcoal: var(--deep-charcoal);
+  --color-olive: var(--olive);
+  --color-brick-red: var(--brick-red);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 64px;
+    @apply font-sans;
+  }
+
+  h2 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48px;
+    @apply font-sans;
+  }
+
+  h3 {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 36px;
+    @apply font-sans;
+  }
+
+  h4 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    @apply font-sans;
+  }
+
+  p {
+    @apply text-deep-charcoal;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+}
+
+/* Brand gradients — utility classes ready to drop on any element */
+@layer utilities {
+  .bg-signature-gradient { background: linear-gradient(135deg, #DC2626 0%, #7F1D1D 100%); }
+  .bg-ember-gradient    { background: linear-gradient(135deg, #EF4444 0%, #B91C1C 50%, #7F1D1D 100%); }
+  .bg-noir-gradient     { background: linear-gradient(180deg, #18181B 0%, #0A0A0A 100%); }
+  .bg-blood-gradient    { background: linear-gradient(135deg, #DC2626 0%, #0A0A0A 100%); }
+  .text-signature-gradient {
+    background: linear-gradient(135deg, #DC2626 0%, #7F1D1D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Section hero background — ink black base with subtle red glows in opposite corners */
+  .bg-hero-noir {
+    background-color: #0A0A0A;
+    background-image:
+      radial-gradient(60% 80% at 0% 0%, rgba(220, 38, 38, 0.22) 0%, transparent 60%),
+      radial-gradient(60% 80% at 100% 100%, rgba(127, 29, 29, 0.18) 0%, transparent 60%);
+  }
+}
