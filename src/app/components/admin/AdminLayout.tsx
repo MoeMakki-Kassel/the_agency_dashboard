@@ -59,7 +59,7 @@ export function AdminLayout() {
       )}
 
       <aside
-        className={`fixed inset-y-0 start-0 z-50 w-[min(100vw-3rem,260px)] sm:w-[260px] bg-primary text-[#e8e8e8] flex flex-col transition-transform duration-300 ease-in-out lg:relative ${sidebarTransform}`}
+        className={`fixed inset-y-0 start-0 z-50 w-[min(100vw-3rem,260px)] sm:w-[260px] bg-secondary text-secondary-foreground flex flex-col transition-transform duration-300 ease-in-out lg:relative ${sidebarTransform}`}
       >
         <div className="p-6 flex items-center justify-between gap-2">
           <div className="min-w-0">
