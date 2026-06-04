@@ -157,15 +157,15 @@ export function AdminReservations() {
     <div className="space-y-6 animate-in fade-in duration-500">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold font-['Tajawal'] text-[#000000]">{t('admin.reservations.title')}</h1>
-          <p className="text-[#8c8c8c] mt-1">{t('admin.reservations.subtitle')}</p>
+          <h1 className="text-3xl font-bold font-['Tajawal'] text-foreground">{t('admin.reservations.title')}</h1>
+          <p className="text-muted-foreground mt-1">{t('admin.reservations.subtitle')}</p>
         </div>
         <div className="flex gap-3 w-full sm:w-auto">
           <AdminRefreshButton onClick={() => void refetch()} isFetching={isFetching} />
           <button
             type="button"
             onClick={exportReservations}
-            className="px-4 py-2 border border-[#e8e8e8] bg-white rounded-lg text-sm font-medium hover:bg-[#e8e8e8] transition-colors flex items-center justify-center gap-2 flex-1 sm:flex-initial"
+            className="px-4 py-2 border border-border bg-card rounded-lg text-sm font-medium hover:bg-muted transition-colors flex items-center justify-center gap-2 flex-1 sm:flex-initial"
           >
             <Download size={16} className="shrink-0 rtl:order-2" />
             {t('admin.common.export_csv')}
@@ -173,12 +173,12 @@ export function AdminReservations() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8]">
-        <div className="p-4 border-b border-[#e8e8e8] flex flex-col md:flex-row gap-4 justify-between items-center bg-[#e8e8e8]/50">
+      <div className="bg-card rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border">
+        <div className="p-4 border-b border-border flex flex-col md:flex-row gap-4 justify-between items-center bg-muted/50">
           <div className="flex w-full md:w-auto gap-3 flex-col sm:flex-row md:ms-auto">
             <div className="relative flex-1 md:w-80">
               <Search
-                className={`absolute top-1/2 -translate-y-1/2 text-[#8c8c8c] ${isRTL ? 'end-3' : 'start-3'}`}
+                className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground ${isRTL ? 'end-3' : 'start-3'}`}
                 size={18}
               />
               <input
@@ -186,10 +186,10 @@ export function AdminReservations() {
                 placeholder={t('admin.reservations.search_ph')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className={`w-full bg-white border border-[#e8e8e8] rounded-lg py-2 text-sm focus:ring-2 focus:ring-[#000000] outline-none ${isRTL ? 'pe-10 ps-4' : 'ps-10 pe-4'}`}
+                className={`w-full bg-card border border-border rounded-lg py-2 text-sm focus:ring-2 focus:ring-primary outline-none ${isRTL ? 'pe-10 ps-4' : 'ps-10 pe-4'}`}
               />
             </div>
-            <p className="text-sm text-[#525252] font-medium whitespace-nowrap self-center">
+            <p className="text-sm text-muted-foreground font-medium whitespace-nowrap self-center">
               {t('admin.reservations.paid_only_badge')}
             </p>
           </div>
@@ -225,26 +225,26 @@ export function AdminReservations() {
             <tbody className="divide-y divide-[#e8e8e8]">
               {isLoading && Array.from({ length: 3 }).map((_, i) => (
                 <tr key={`skeleton-${i}`} className="animate-pulse">
-                  <td className=""><div className="h-4 bg-[#e8e8e8] rounded w-20"></div></td>
+                  <td className=""><div className="h-4 bg-muted rounded w-20"></div></td>
                   <td className="">
-                    <div className="h-4 bg-[#e8e8e8] rounded w-32 mb-1"></div>
-                    <div className="h-3 bg-[#e8e8e8] rounded w-40"></div>
+                    <div className="h-4 bg-muted rounded w-32 mb-1"></div>
+                    <div className="h-3 bg-muted rounded w-40"></div>
                   </td>
                   <td className="">
-                    <div className="h-4 bg-[#e8e8e8] rounded w-36 mb-1"></div>
-                    <div className="h-3 bg-[#e8e8e8] rounded w-20"></div>
+                    <div className="h-4 bg-muted rounded w-36 mb-1"></div>
+                    <div className="h-3 bg-muted rounded w-20"></div>
                   </td>
-                  <td className=""><div className="h-4 bg-[#e8e8e8] rounded w-6"></div></td>
-                  <td className=""><div className="h-4 bg-[#e8e8e8] rounded w-16"></div></td>
-                  <td className=""><div className="h-6 bg-[#e8e8e8] rounded-full w-20"></div></td>
-                  <td className=""><div className="h-4 bg-[#e8e8e8] rounded w-14"></div></td>
+                  <td className=""><div className="h-4 bg-muted rounded w-6"></div></td>
+                  <td className=""><div className="h-4 bg-muted rounded w-16"></div></td>
+                  <td className=""><div className="h-6 bg-muted rounded-full w-20"></div></td>
+                  <td className=""><div className="h-4 bg-muted rounded w-14"></div></td>
                   <td className=""></td>
                 </tr>
               ))}
 
               {!isLoading && reservations.length === 0 && (
                 <tr>
-                  <td colSpan={8} className="px-6 py-12 text-center text-[#8c8c8c]">
+                  <td colSpan={8} className="px-6 py-12 text-center text-muted-foreground">
                     {t('admin.reservations.none')}
                   </td>
                 </tr>
@@ -252,9 +252,9 @@ export function AdminReservations() {
 
               {!isLoading && reservations.map((res) => {
                 const status = res.payment_status;
-                let statusColor = "bg-[#8c8c8c]/10 text-[#8c8c8c]";
-                if (status === "paid") statusColor = "bg-[#525252]/10 text-[#525252]";
-                if (status === "pending") statusColor = "bg-[#000000]/10 text-[#000000]";
+                let statusColor = "bg-[#8c8c8c]/10 text-muted-foreground";
+                if (status === "paid") statusColor = "bg-secondary/10 text-muted-foreground";
+                if (status === "pending") statusColor = "bg-primary/10 text-foreground";
 
                 const customerName = `${res.users.first_name} ${res.users.last_name}`;
                 const eventName = res.events?.title || res.events?.name || t('admin.common.unknown');
@@ -264,9 +264,9 @@ export function AdminReservations() {
                 const scan = scanCounts(status, res.tickets, qty);
 
                 return (
-                  <tr key={res.id} className="hover:bg-[#e8e8e8]/50 transition-colors">
+                  <tr key={res.id} className="hover:bg-muted/50 transition-colors">
                     <td className=" align-top text-start">
-                      <span className="font-mono font-medium text-[#000000]">{refId}</span>
+                      <span className="font-mono font-medium text-foreground">{refId}</span>
                       {res.is_complimentary && (
                         <span className="ms-2 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase bg-violet-100 text-violet-800">
                           {t('admin.comp.badge')}
@@ -274,15 +274,15 @@ export function AdminReservations() {
                       )}
                     </td>
                     <td className=" align-top text-start min-w-0">
-                      <div className="font-medium text-[#000000]">{customerName}</div>
-                      <div className="text-xs text-[#8c8c8c] truncate">{res.users.email}</div>
+                      <div className="font-medium text-foreground">{customerName}</div>
+                      <div className="text-xs text-muted-foreground truncate">{res.users.email}</div>
                     </td>
                     <td className=" align-top text-start min-w-0">
-                      <div className="text-[#000000] truncate">{eventName}</div>
-                      <div className="text-xs text-[#8c8c8c] truncate">{tier}</div>
+                      <div className="text-foreground truncate">{eventName}</div>
+                      <div className="text-xs text-muted-foreground truncate">{tier}</div>
                     </td>
-                    <td className=" align-top text-end tabular-nums text-[#000000]">{qty}</td>
-                    <td className=" align-top text-end font-['Space_Grotesk'] font-medium text-[#000000] tabular-nums">{formatCurrency(res.total_amount)}</td>
+                    <td className=" align-top text-end tabular-nums text-foreground">{qty}</td>
+                    <td className=" align-top text-end font-['Space_Grotesk'] font-medium text-foreground tabular-nums">{formatCurrency(res.total_amount)}</td>
                     <td className=" align-top text-start">
                       <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${statusColor}`}>
                         {capitalizeFirst(status)}
@@ -290,7 +290,7 @@ export function AdminReservations() {
                     </td>
                     <td className=" align-top text-start">
                       {scan === null ? (
-                        <span className="text-xs text-[#8c8c8c] tabular-nums">{t('admin.reservations.scan_pending')}</span>
+                        <span className="text-xs text-muted-foreground tabular-nums">{t('admin.reservations.scan_pending')}</span>
                       ) : (
                         <div className="flex items-center gap-2 min-w-0">
                           <div
@@ -305,7 +305,7 @@ export function AdminReservations() {
                             }
                             aria-hidden
                           />
-                          <span className="text-xs text-[#000000] tabular-nums truncate">
+                          <span className="text-xs text-foreground tabular-nums truncate">
                             {t('admin.reservations.scan_ratio')
                               .replace('{{scanned}}', String(scan.scanned))
                               .replace('{{total}}', String(scan.total))}
@@ -326,7 +326,7 @@ export function AdminReservations() {
                           onClick={() => {
                             void handleSendTickets(res.id, status);
                           }}
-                          className="w-full flex items-center px-4 py-2 text-sm text-[#000000] hover:bg-[#e8e8e8] gap-2 disabled:opacity-50 disabled:pointer-events-none"
+                          className="w-full flex items-center px-4 py-2 text-sm text-foreground hover:bg-muted gap-2 disabled:opacity-50 disabled:pointer-events-none"
                         >
                           <Mail size={14} />
                           {sendingTicketForId === res.id ? t('admin.common.loading') : t('admin.reservations.send_tickets')}
@@ -338,7 +338,7 @@ export function AdminReservations() {
                           onClick={() => {
                             void handleDownloadTickets(res.id, status);
                           }}
-                          className="w-full flex items-center px-4 py-2 text-sm text-[#000000] hover:bg-[#e8e8e8] gap-2 disabled:opacity-50 disabled:pointer-events-none"
+                          className="w-full flex items-center px-4 py-2 text-sm text-foreground hover:bg-muted gap-2 disabled:opacity-50 disabled:pointer-events-none"
                         >
                           <Download size={14} />
                           {downloadingTicketForId === res.id ? t('admin.common.loading') : t('admin.reservations.download_tickets')}
@@ -350,14 +350,14 @@ export function AdminReservations() {
               })}
             </tbody>
         </AdminTable>
-        <div className="p-4 border-t border-[#e8e8e8] flex flex-col sm:flex-row justify-between items-center gap-3 text-sm text-[#8c8c8c] bg-[#e8e8e8]/30">
+        <div className="p-4 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-3 text-sm text-muted-foreground bg-muted/30">
           <div>{showingText}</div>
           <div className="flex gap-1 flex-wrap justify-center">
             <button
               type="button"
               disabled={!canPrev || isLoading}
               onClick={() => setOffset(Math.max(0, offset - PAGE_SIZE))}
-              className="px-3 py-1 border border-[#e8e8e8] rounded bg-white hover:bg-[#e8e8e8] disabled:opacity-50"
+              className="px-3 py-1 border border-border rounded bg-card hover:bg-muted disabled:opacity-50"
             >
               {t('admin.common.previous')}
             </button>
@@ -365,7 +365,7 @@ export function AdminReservations() {
               type="button"
               disabled={!canNext || isLoading}
               onClick={() => setOffset(offset + PAGE_SIZE)}
-              className="px-3 py-1 border border-[#e8e8e8] rounded bg-white hover:bg-[#e8e8e8] disabled:opacity-50"
+              className="px-3 py-1 border border-border rounded bg-card hover:bg-muted disabled:opacity-50"
             >
               {t('admin.common.next')}
             </button>

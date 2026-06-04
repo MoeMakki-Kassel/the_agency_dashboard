@@ -36,8 +36,8 @@ export function PhoneCountryField({
   const fdTel = formFieldDirProps(
     isRTL,
     "latin",
-    `box-border h-12 min-h-12 min-w-0 flex-1 basis-0 rounded-lg border bg-white px-4 text-sm leading-none text-ink-black placeholder:text-[#8c8c8c] focus:outline-none focus:ring-2 focus:ring-black/50 focus:border-black disabled:opacity-60 sm:min-w-[12rem] ${
-      invalid ? "border-red-500 focus:ring-red-500/40" : "border-[#e8e8e8]"
+    `box-border h-12 min-h-12 min-w-0 flex-1 basis-0 rounded-lg border bg-input px-4 text-sm leading-none text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary disabled:opacity-60 sm:min-w-[12rem] ${
+      invalid ? "border-red-500 focus:ring-red-500/40" : "border-border"
     }`,
   );
 
@@ -53,7 +53,7 @@ export function PhoneCountryField({
           type="button"
           aria-label={`${country.name}, +${country.dial}`}
           dir={isRTL ? "rtl" : undefined}
-          className="h-12 min-h-12 w-full shrink-0 rounded-lg border border-[#e8e8e8] bg-white px-2.5 text-sm shadow-none focus:ring-2 focus:ring-black/50 focus:border-black data-[size=default]:h-12 sm:w-[9rem] sm:max-w-[9rem] text-start"
+          className="h-12 min-h-12 w-full shrink-0 rounded-lg border border-border bg-input text-foreground px-2.5 text-sm shadow-none focus:ring-2 focus:ring-primary/50 focus:border-primary data-[size=default]:h-12 sm:w-[9rem] sm:max-w-[9rem] text-start"
         >
           <div className="flex min-w-0 items-center gap-1.5 pr-0.5">
             <CountryFlagGlyph iso2={country.iso2} className="h-[1.125rem] w-[1.6875rem]" />
@@ -62,7 +62,7 @@ export function PhoneCountryField({
             </span>
           </div>
         </SelectTrigger>
-        <SelectContent className="max-h-72 z-[100] bg-white border border-[#e8e8e8]">
+        <SelectContent className="max-h-72 z-[100] bg-popover text-popover-foreground border border-border">
           {COUNTRY_DIAL_CODES.map((c) => {
             return (
               <SelectItem

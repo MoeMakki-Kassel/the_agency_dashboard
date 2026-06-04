@@ -114,7 +114,7 @@ export function CountryFlagGlyph({ iso2, className }: CountryFlagGlyphProps) {
     return (
       <span
         className={cn(
-          "inline-flex h-4 w-6 shrink-0 items-center justify-center rounded-sm border border-[#e0e0e0] bg-[#f5f5f5] text-[9px] font-semibold uppercase tracking-tight text-[#666]",
+          "inline-flex h-4 w-6 shrink-0 items-center justify-center rounded-sm border border-border bg-muted text-[9px] font-semibold uppercase tracking-tight text-muted-foreground",
           className,
         )}
         aria-hidden

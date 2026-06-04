@@ -55,7 +55,7 @@ export function AdminSeatMapViewer({
   };
 
   return (
-    <div className="relative w-full overflow-auto rounded-xl border border-[#e8e8e8] bg-[#fafafa] max-h-[min(70vh,720px)]">
+    <div className="relative w-full overflow-auto rounded-xl border border-border bg-muted max-h-[min(70vh,720px)]">
       <svg viewBox={viewBox} className="w-full min-w-[320px]" style={{ minHeight: 280 }} role="img">
         {layout.floor_plan_url && (
           <image href={layout.floor_plan_url} x={0} y={0} width={pageW} height={pageH} preserveAspectRatio="xMidYMid meet" />
@@ -116,7 +116,7 @@ export function AdminSeatMapViewer({
           );
         })}
       </svg>
-      <div className="absolute bottom-2 start-2 flex flex-wrap gap-2 text-[10px] bg-white/90 rounded-lg px-2 py-1 border border-[#e8e8e8]">
+      <div className="absolute bottom-2 start-2 flex flex-wrap gap-2 text-[10px] bg-white/90 rounded-lg px-2 py-1 border border-border">
         <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#22c55e]" /> Available</span>
         <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#f59e0b]" /> Held</span>
         <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-[#dc2626]" /> Booked</span>

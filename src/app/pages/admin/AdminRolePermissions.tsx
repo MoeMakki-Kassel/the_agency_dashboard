@@ -100,34 +100,34 @@ export function AdminRolePermissions() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-[#000000]">{t("admin.roles.title")}</h1>
-          <p className="text-sm text-[#8c8c8c] mt-1">{t("admin.roles.subtitle")}</p>
+          <h1 className="text-2xl font-bold text-foreground">{t("admin.roles.title")}</h1>
+          <p className="text-sm text-muted-foreground mt-1">{t("admin.roles.subtitle")}</p>
         </div>
         <button
           type="button"
           onClick={() => setDialogOpen(true)}
-          className="px-4 py-2 bg-black text-white rounded-lg text-sm font-medium hover:bg-accent"
+          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-accent"
         >
           {t("admin.roles.add_role")}
         </button>
       </div>
 
       {dialogOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-          <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-secondary/50">
+          <div className="bg-card rounded-xl p-6 w-full max-w-md shadow-xl">
             <h2 className="text-lg font-bold mb-4">{t("admin.roles.add_role")}</h2>
             <label className="block text-sm font-medium mb-2">{t("admin.roles.role_name")}</label>
             <input
               value={newRoleName}
               onChange={(e) => setNewRoleName(e.target.value)}
-              className="w-full border border-[#e8e8e8] rounded-lg px-3 py-2 text-sm mb-4"
+              className="w-full border border-border rounded-lg px-3 py-2 text-sm mb-4"
               placeholder={t("admin.roles.role_name_ph")}
             />
             <div className="flex gap-2 justify-end">
               <button
                 type="button"
                 onClick={() => setDialogOpen(false)}
-                className="px-4 py-2 border border-[#e8e8e8] rounded-lg text-sm"
+                className="px-4 py-2 border border-border rounded-lg text-sm"
               >
                 {t("admin.common.cancel")}
               </button>
@@ -135,7 +135,7 @@ export function AdminRolePermissions() {
                 type="button"
                 disabled={!newRoleName.trim() || createRoleMutation.isPending}
                 onClick={() => createRoleMutation.mutate(newRoleName.trim())}
-                className="px-4 py-2 bg-black text-white rounded-lg text-sm disabled:opacity-50"
+                className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm disabled:opacity-50"
               >
                 {createRoleMutation.isPending ? t("admin.common.loading") : t("admin.common.save")}
               </button>
@@ -144,24 +144,24 @@ export function AdminRolePermissions() {
         </div>
       )}
 
-      <div className="bg-white rounded-xl border border-[#e8e8e8] overflow-x-auto admin-table-wrap min-w-0">
+      <div className="bg-card rounded-xl border border-border overflow-x-auto admin-table-wrap min-w-0">
         {isLoading ? (
           <div className="p-8 space-y-4">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="h-12 bg-[#e8e8e8] rounded animate-pulse" />
+              <div key={i} className="h-12 bg-muted rounded animate-pulse" />
             ))}
           </div>
         ) : (
           <table className="w-full min-w-[56rem] border-collapse text-sm admin-table">
             <thead>
-              <tr className="border-b border-[#e8e8e8] bg-[#e8e8e8]">
-                <th className="sticky start-0 z-10 bg-[#e8e8e8] text-start px-4 py-3 text-xs font-semibold text-[#8c8c8c] uppercase tracking-wide min-w-[140px]">
+              <tr className="border-b border-border bg-muted">
+                <th className="sticky start-0 z-10 bg-muted text-start px-4 py-3 text-xs font-semibold text-muted-foreground uppercase tracking-wide min-w-[140px]">
                   {t("admin.roles.col_role")}
                 </th>
                 {ALL_RESOURCES.map((r) => (
                   <th
                     key={r}
-                    className="text-center px-2 py-3 text-[10px] leading-tight font-semibold text-[#8c8c8c] uppercase tracking-wide min-w-[72px] max-w-[96px] whitespace-normal align-bottom"
+                    className="text-center px-2 py-3 text-[10px] leading-tight font-semibold text-muted-foreground uppercase tracking-wide min-w-[72px] max-w-[96px] whitespace-normal align-bottom"
                   >
                     {t(RESOURCE_TKEY[r])}
                   </th>
@@ -177,7 +177,7 @@ export function AdminRolePermissions() {
                 const label = ROLE_TKEY[role] ? t(labelKey) : roleRow.display_name;
                 return (
                   <tr key={role} className="hover:bg-gray-50 transition-colors">
-                    <td className="sticky start-0 z-10 bg-white px-4 py-3 align-middle text-start shadow-[2px_0_4px_rgba(0,0,0,0.04)]">
+                    <td className="sticky start-0 z-10 bg-card px-4 py-3 align-middle text-start shadow-[2px_0_4px_rgba(0,0,0,0.04)]">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${badge}`}>
                         {label}
                       </span>
@@ -191,7 +191,7 @@ export function AdminRolePermissions() {
                             checked={granted}
                             disabled={isSuperAdmin || isPending}
                             onChange={() => handleToggle(role, resource, granted)}
-                            className="w-4 h-4 rounded border-gray-300 text-[#000000] focus:ring-[#000000] disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
+                            className="w-4 h-4 rounded border-gray-300 text-foreground focus:ring-primary disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
                             aria-label={`${label} — ${t(RESOURCE_TKEY[resource])}`}
                           />
                         </td>
@@ -205,7 +205,7 @@ export function AdminRolePermissions() {
         )}
       </div>
 
-      <p className="text-xs text-[#8c8c8c]">{t("admin.roles.footer_note")}</p>
+      <p className="text-xs text-muted-foreground">{t("admin.roles.footer_note")}</p>
     </div>
   );
 }

@@ -36,10 +36,10 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
     if (!loading && invalidRole) signOut();
   }, [loading, invalidRole, signOut]);
 
-  if (loading) return <div className="h-screen w-full flex items-center justify-center bg-white">Loading...</div>;
+  if (loading) return <div className="h-screen w-full flex items-center justify-center bg-background text-foreground">Loading...</div>;
   if (!token) return <Navigate to="/login" replace />;
   if (invalidRole) return <Navigate to="/login" replace />;
-  if (token && !user) return <div className="h-screen w-full flex items-center justify-center bg-white">Loading...</div>;
+  if (token && !user) return <div className="h-screen w-full flex items-center justify-center bg-background text-foreground">Loading...</div>;
 
   return <>{children}</>;
 }

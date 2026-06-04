@@ -119,14 +119,14 @@ export function AdminAnalytics() {
     <div className="space-y-6 animate-in fade-in duration-500 pb-12">
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold font-['Tajawal'] text-[#000000]">{t('admin.analytics.title')}</h1>
-          <p className="text-[#8c8c8c] mt-1">{t('admin.analytics.subtitle')}</p>
+          <h1 className="text-3xl font-bold font-['Tajawal'] text-foreground">{t('admin.analytics.title')}</h1>
+          <p className="text-muted-foreground mt-1">{t('admin.analytics.subtitle')}</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
           <select
             value={period}
             onChange={(e) => setPeriod(e.target.value as AnalyticsPeriod)}
-            className="px-4 py-2 border border-[#e8e8e8] bg-white rounded-lg text-sm font-medium focus:ring-2 focus:ring-[#000000] outline-none cursor-pointer text-[#000000] w-full sm:w-auto"
+            className="px-4 py-2 border border-border bg-card rounded-lg text-sm font-medium focus:ring-2 focus:ring-primary outline-none cursor-pointer text-foreground w-full sm:w-auto"
           >
             {ANALYTICS_PERIOD_SEQUENCE.map((p) => (
               <option key={p} value={p}>{t(analyticsPeriodLabelKey(p))}</option>
@@ -135,7 +135,7 @@ export function AdminAnalytics() {
           <button
             type="button"
             onClick={exportAnalytics}
-            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-black transition-colors flex items-center justify-center gap-2 w-full sm:w-auto"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-secondary transition-colors flex items-center justify-center gap-2 w-full sm:w-auto"
           >
             <Download size={16} className="shrink-0" />
             {t('admin.common.export_report')}
@@ -146,42 +146,42 @@ export function AdminAnalytics() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {isLoading ? (
           Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="bg-white p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8] animate-pulse">
+            <div key={i} className="bg-card p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border animate-pulse">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
-                  <div className="h-4 bg-[#e8e8e8] rounded w-32 mb-3"></div>
-                  <div className="h-7 bg-[#e8e8e8] rounded w-24"></div>
+                  <div className="h-4 bg-muted rounded w-32 mb-3"></div>
+                  <div className="h-7 bg-muted rounded w-24"></div>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-[#e8e8e8]"></div>
+                <div className="w-10 h-10 rounded-full bg-muted"></div>
               </div>
-              <div className="mt-4 h-4 bg-[#e8e8e8] rounded w-40"></div>
+              <div className="mt-4 h-4 bg-muted rounded w-40"></div>
             </div>
           ))
         ) : (
           [
-            { labelKey: 'admin.overview.new_users', value: stats ? formatNumber(stats.new_users.count) : '—', change: stats ? changeFmt(stats.new_users.change) : '—', icon: Users, color: "text-[#000000]", bg: "bg-[#000000]/10" },
-            { labelKey: 'admin.overview.events_hosted', value: stats ? formatNumber(stats.events_hosted.count) : '—', change: stats ? `${stats.events_hosted.change >= 0 ? '+' : ''}${stats.events_hosted.change}` : '—', icon: Calendar, color: "text-[#525252]", bg: "bg-[#525252]/10" },
-            { labelKey: 'admin.overview.conversion_rate', value: stats ? `${formatNumber(stats.conversion_rate.rate, { maximumFractionDigits: 1 })}%` : '—', change: stats ? changeFmt(stats.conversion_rate.change) : '—', icon: TrendingUp, color: "text-[#8c8c8c]", bg: "bg-[#8c8c8c]/10" },
-            { labelKey: 'admin.overview.page_views', value: stats?.total_page_views?.count != null ? formatNumber(stats.total_page_views.count) : '—', change: stats?.total_page_views?.change != null ? changeFmt(stats.total_page_views.change) : '—', icon: Globe, color: "text-[#000000]", bg: "bg-[#000000]/10" },
+            { labelKey: 'admin.overview.new_users', value: stats ? formatNumber(stats.new_users.count) : '—', change: stats ? changeFmt(stats.new_users.change) : '—', icon: Users, color: "text-foreground", bg: "bg-primary/10" },
+            { labelKey: 'admin.overview.events_hosted', value: stats ? formatNumber(stats.events_hosted.count) : '—', change: stats ? `${stats.events_hosted.change >= 0 ? '+' : ''}${stats.events_hosted.change}` : '—', icon: Calendar, color: "text-muted-foreground", bg: "bg-secondary/10" },
+            { labelKey: 'admin.overview.conversion_rate', value: stats ? `${formatNumber(stats.conversion_rate.rate, { maximumFractionDigits: 1 })}%` : '—', change: stats ? changeFmt(stats.conversion_rate.change) : '—', icon: TrendingUp, color: "text-muted-foreground", bg: "bg-[#8c8c8c]/10" },
+            { labelKey: 'admin.overview.page_views', value: stats?.total_page_views?.count != null ? formatNumber(stats.total_page_views.count) : '—', change: stats?.total_page_views?.change != null ? changeFmt(stats.total_page_views.change) : '—', icon: Globe, color: "text-foreground", bg: "bg-primary/10" },
           ].map((kpi, i) => {
             const Icon = kpi.icon;
             return (
-              <div key={i} className="bg-white p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8]">
+              <div key={i} className="bg-card p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border">
                 <div className="flex justify-between items-start gap-2">
                   <div className="min-w-0">
-                    <p className="text-sm font-medium text-[#8c8c8c]">{t(kpi.labelKey)}</p>
-                    <h3 className="text-2xl font-bold text-[#000000] mt-2 font-['Space_Grotesk']">{kpi.value}</h3>
+                    <p className="text-sm font-medium text-muted-foreground">{t(kpi.labelKey)}</p>
+                    <h3 className="text-2xl font-bold text-foreground mt-2 font-['Space_Grotesk']">{kpi.value}</h3>
                   </div>
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${kpi.bg} ${kpi.color}`}>
                     <Icon size={20} />
                   </div>
                 </div>
                 <div className="mt-4 flex items-center text-sm flex-wrap gap-1">
-                  <span className="text-[#525252] font-medium flex items-center gap-1">
+                  <span className="text-muted-foreground font-medium flex items-center gap-1">
                     <TrendingUp size={14} />
                     {kpi.change}
                   </span>
-                  <span className="text-[#8c8c8c] ms-1">{t('admin.overview.vs_previous')}</span>
+                  <span className="text-muted-foreground ms-1">{t('admin.overview.vs_previous')}</span>
                 </div>
               </div>
             );
@@ -190,8 +190,8 @@ export function AdminAnalytics() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8] min-w-0">
-          <h3 className="text-lg font-bold font-['Tajawal'] text-[#000000] mb-6">{t('admin.analytics.revenue_tickets_trend')}</h3>
+        <div className="bg-card p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border min-w-0">
+          <h3 className="text-lg font-bold font-['Tajawal'] text-foreground mb-6">{t('admin.analytics.revenue_tickets_trend')}</h3>
           <div className="h-[300px] w-full min-w-0">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={monthlyData} margin={{ top: 5, right: 0, bottom: 5, left: language === 'AR' ? 8 : -20 }}>
@@ -210,8 +210,8 @@ export function AdminAnalytics() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8] flex flex-col min-w-0">
-          <h3 className="text-lg font-bold font-['Tajawal'] text-[#000000] mb-6">{t('admin.analytics.audience_age')}</h3>
+        <div className="bg-card p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border flex flex-col min-w-0">
+          <h3 className="text-lg font-bold font-['Tajawal'] text-foreground mb-6">{t('admin.analytics.audience_age')}</h3>
           <div className="flex-1 flex items-center justify-center">
             <div className="w-full min-h-[250px] flex flex-col md:flex-row items-center gap-4">
               <div className="w-full md:w-1/2 h-[250px]">
@@ -240,13 +240,13 @@ export function AdminAnalytics() {
                   <div key={i} className="flex items-center justify-between gap-2">
                     <div className="flex items-center min-w-0">
                       <div className="w-3 h-3 rounded-full me-2 shrink-0" style={{ backgroundColor: COLORS[i % COLORS.length] }} />
-                      <span className="text-sm font-medium text-[#000000] truncate">{item.name}</span>
+                      <span className="text-sm font-medium text-foreground truncate">{item.name}</span>
                     </div>
-                    <span className="text-sm text-[#8c8c8c] shrink-0">{formatNumber(item.value, { maximumFractionDigits: 1 })}%</span>
+                    <span className="text-sm text-muted-foreground shrink-0">{formatNumber(item.value, { maximumFractionDigits: 1 })}%</span>
                   </div>
                 ))}
                 {demographicsData.length === 0 && (
-                  <p className="text-sm text-[#8c8c8c]">{t('admin.common.no_data')}</p>
+                  <p className="text-sm text-muted-foreground">{t('admin.common.no_data')}</p>
                 )}
               </div>
             </div>
@@ -254,11 +254,11 @@ export function AdminAnalytics() {
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8] min-w-0">
+      <div className="bg-card p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border min-w-0">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
           <div>
-            <h3 className="text-lg font-bold font-['Tajawal'] text-[#000000]">{t('admin.analytics.events_performance')}</h3>
-            <p className="text-sm text-[#8c8c8c] mt-1">{t('admin.analytics.events_performance_hint')}</p>
+            <h3 className="text-lg font-bold font-['Tajawal'] text-foreground">{t('admin.analytics.events_performance')}</h3>
+            <p className="text-sm text-muted-foreground mt-1">{t('admin.analytics.events_performance_hint')}</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
             <input
@@ -266,12 +266,12 @@ export function AdminAnalytics() {
               value={eventSearch}
               onChange={(e) => setEventSearch(e.target.value)}
               placeholder={t('admin.analytics.search_events')}
-              className="px-3 py-2 border border-[#e8e8e8] rounded-lg text-sm w-full sm:w-48"
+              className="px-3 py-2 border border-border rounded-lg text-sm w-full sm:w-48"
             />
             <select
               value={eventSort}
               onChange={(e) => setEventSort(e.target.value as EventSortKey)}
-              className="px-3 py-2 border border-[#e8e8e8] rounded-lg text-sm bg-white"
+              className="px-3 py-2 border border-border rounded-lg text-sm bg-card"
             >
               <option value="revenue">{t('admin.analytics.sort_revenue')}</option>
               <option value="tickets_sold">{t('admin.analytics.sort_tickets')}</option>
@@ -282,7 +282,7 @@ export function AdminAnalytics() {
         <div className="overflow-x-auto admin-table-wrap">
           <table className="w-full text-sm admin-table">
             <thead>
-              <tr className="border-b border-[#e8e8e8] text-[#8c8c8c]">
+              <tr className="border-b border-border text-muted-foreground">
                 <th className="text-start py-3 px-2 font-medium">{t('admin.analytics.col_event')}</th>
                 <th className="text-end py-3 px-2 font-medium">{t('admin.analytics.col_tickets')}</th>
                 <th className="text-end py-3 px-2 font-medium">{t('admin.analytics.col_revenue')}</th>
@@ -292,9 +292,9 @@ export function AdminAnalytics() {
             </thead>
             <tbody>
               {isLoading ? (
-                <tr><td colSpan={5} className="py-8 text-center text-[#8c8c8c]">{t('admin.common.loading')}</td></tr>
+                <tr><td colSpan={5} className="py-8 text-center text-muted-foreground">{t('admin.common.loading')}</td></tr>
               ) : filteredEvents.length === 0 ? (
-                <tr><td colSpan={5} className="py-8 text-center text-[#8c8c8c]">{t('admin.common.no_data')}</td></tr>
+                <tr><td colSpan={5} className="py-8 text-center text-muted-foreground">{t('admin.common.no_data')}</td></tr>
               ) : (
                 filteredEvents.map((row: EventPerformanceRow) => {
                   const share = totalEventRevenue > 0 ? (row.revenue / totalEventRevenue) * 100 : 0;
@@ -302,12 +302,12 @@ export function AdminAnalytics() {
                   return (
                     <tr
                       key={row.event_id}
-                      className={`border-b border-[#e8e8e8] last:border-0 ${isTop ? 'bg-[#f5f5f5]' : ''}`}
+                      className={`border-b border-border last:border-0 ${isTop ? 'bg-muted' : ''}`}
                     >
-                      <td className="py-3 px-2 font-medium text-[#000000]">
+                      <td className="py-3 px-2 font-medium text-foreground">
                         {row.title}
                         {isTop && (
-                          <span className="ms-2 text-xs font-bold uppercase text-[#525252] bg-[#e8e8e8] px-2 py-0.5 rounded">
+                          <span className="ms-2 text-xs font-bold uppercase text-muted-foreground bg-muted px-2 py-0.5 rounded">
                             {t('admin.analytics.top_seller')}
                           </span>
                         )}

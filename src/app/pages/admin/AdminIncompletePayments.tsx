@@ -114,8 +114,8 @@ export function AdminIncompletePayments() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold font-['Tajawal'] text-ink-black">{t('admin.incomplete.title')}</h1>
-          <p className="text-[#8c8c8c] text-sm mt-1">{t('admin.incomplete.subtitle')}</p>
-          <p className="text-[#8c8c8c] text-xs mt-1">{t('admin.incomplete.subnote')}</p>
+          <p className="text-muted-foreground text-sm mt-1">{t('admin.incomplete.subtitle')}</p>
+          <p className="text-muted-foreground text-xs mt-1">{t('admin.incomplete.subnote')}</p>
           {error && (
             <p className="text-sm text-red-600 mt-2">{getUserFacingErrorMessage(error, 'Failed to load')}</p>
           )}
@@ -125,7 +125,7 @@ export function AdminIncompletePayments() {
           <button
             type="button"
             onClick={exportCsv}
-            className="flex items-center justify-center gap-2 px-4 py-2 bg-white border border-warm-gray rounded-lg text-sm font-medium hover:bg-warm-gray/10 transition-colors flex-1 sm:flex-initial"
+            className="flex items-center justify-center gap-2 px-4 py-2 bg-card border border-warm-gray rounded-lg text-sm font-medium hover:bg-warm-gray/10 transition-colors flex-1 sm:flex-initial"
           >
             <Download className="w-4 h-4 shrink-0" />
             {t('admin.common.export_csv')}
@@ -133,23 +133,23 @@ export function AdminIncompletePayments() {
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4 bg-white p-4 rounded-xl border border-warm-gray/50 shadow-sm">
+      <div className="flex flex-col sm:flex-row gap-4 bg-card p-4 rounded-xl border border-warm-gray/50 shadow-sm">
         <div className="relative flex-1">
-          <Search className="absolute top-1/2 -translate-y-1/2 text-[#8c8c8c] w-5 h-5 start-3" />
+          <Search className="absolute top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 start-3" />
           <input
             type="text"
             placeholder={t('admin.incomplete.search_ph')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full py-2 ps-10 pe-4 rounded-lg border border-warm-gray/50 focus:outline-none focus:ring-2 focus:ring-black/50 text-sm"
+            className="w-full py-2 ps-10 pe-4 rounded-lg border border-warm-gray/50 focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
           />
         </div>
         <div className="flex items-center gap-2">
-          <Filter className="text-[#8c8c8c] w-5 h-5 shrink-0" />
+          <Filter className="text-muted-foreground w-5 h-5 shrink-0" />
           <select
             value={filterEventId}
             onChange={(e) => setFilterEventId(e.target.value)}
-            className="flex-1 min-w-0 ps-3 pe-8 py-2 rounded-lg border border-warm-gray/50 focus:outline-none focus:ring-2 focus:ring-black/50 text-sm bg-white"
+            className="flex-1 min-w-0 ps-3 pe-8 py-2 rounded-lg border border-warm-gray/50 focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm bg-card"
           >
             {eventIdOptions.map((opt) => (
               <option key={opt.id} value={opt.id}>
@@ -161,48 +161,48 @@ export function AdminIncompletePayments() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white rounded-xl border border-warm-gray/50 shadow-sm p-5">
+        <div className="bg-card rounded-xl border border-warm-gray/50 shadow-sm p-5">
           <div className="flex items-center justify-between gap-2">
             <div>
-              <p className="text-sm text-[#8c8c8c]">{t('admin.incomplete.total')}</p>
+              <p className="text-sm text-muted-foreground">{t('admin.incomplete.total')}</p>
               <p className="text-3xl font-bold text-ink-black mt-1">{isLoading ? '…' : items.length}</p>
             </div>
-            <div className="w-12 h-12 rounded-full bg-[#525252]/10 flex items-center justify-center shrink-0">
-              <AlertCircle className="w-6 h-6 text-[#525252]" />
+            <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center shrink-0">
+              <AlertCircle className="w-6 h-6 text-muted-foreground" />
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-warm-gray/50 shadow-sm p-5">
+        <div className="bg-card rounded-xl border border-warm-gray/50 shadow-sm p-5">
           <div className="flex items-center justify-between gap-2">
             <div>
-              <p className="text-sm text-[#8c8c8c]">{t('admin.incomplete.potential')}</p>
+              <p className="text-sm text-muted-foreground">{t('admin.incomplete.potential')}</p>
               <p className="text-3xl font-bold text-ink-black mt-1">
                 {isLoading ? '…' : `${potential} JOD`}
               </p>
             </div>
             <div className="w-12 h-12 rounded-full bg-[#8c8c8c]/10 flex items-center justify-center shrink-0">
-              <DollarSign className="w-6 h-6 text-[#8c8c8c]" />
+              <DollarSign className="w-6 h-6 text-muted-foreground" />
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-warm-gray/50 shadow-sm p-5">
+        <div className="bg-card rounded-xl border border-warm-gray/50 shadow-sm p-5">
           <div className="flex items-center justify-between gap-2">
             <div>
-              <p className="text-sm text-[#8c8c8c]">{t('admin.incomplete.seats')}</p>
+              <p className="text-sm text-muted-foreground">{t('admin.incomplete.seats')}</p>
               <p className="text-3xl font-bold text-ink-black mt-1">
                 {isLoading ? '…' : totalSeats}
               </p>
             </div>
-            <div className="w-12 h-12 rounded-full bg-black/10 flex items-center justify-center shrink-0">
-              <Ticket className="w-6 h-6 text-black" />
+            <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center shrink-0">
+              <Ticket className="w-6 h-6 text-foreground" />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-warm-gray/50 shadow-sm overflow-hidden">
+      <div className="bg-card rounded-xl border border-warm-gray/50 shadow-sm overflow-hidden">
         <AdminTable
           minWidth="68rem"
           colgroup={
@@ -235,14 +235,14 @@ export function AdminIncompletePayments() {
             <tbody className="divide-y divide-warm-gray/50">
               {isLoading ? (
                 <tr>
-                  <td colSpan={9} className="py-8 text-center text-[#8c8c8c]">Loading…</td>
+                  <td colSpan={9} className="py-8 text-center text-muted-foreground">Loading…</td>
                 </tr>
               ) : (
                 items.map((item) => (
-                  <tr key={item.id} className="hover:bg-[#e8e8e8]/30 transition-colors">
+                  <tr key={item.id} className="hover:bg-muted/30 transition-colors">
                     <td className=" align-top text-start min-w-0">
                       <div className="flex items-center gap-3 min-w-0">
-                        <div className="w-8 h-8 rounded-full bg-[#e8e8e8] flex items-center justify-center text-black shrink-0">
+                        <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-foreground shrink-0">
                           <User className="w-4 h-4" />
                         </div>
                         <span className="font-medium text-ink-black truncate">{item.name}</span>
@@ -251,24 +251,24 @@ export function AdminIncompletePayments() {
                     <td className=" align-top text-start min-w-0">
                       <div className="flex flex-col gap-1 text-sm">
                         <div className="flex items-center gap-2 text-ink-black min-w-0">
-                          <Mail className="w-3 h-3 text-[#8c8c8c] shrink-0" />
+                          <Mail className="w-3 h-3 text-muted-foreground shrink-0" />
                           <span className="truncate">{item.email}</span>
                         </div>
                         <div className="flex items-center gap-2 text-ink-black">
-                          <Phone className="w-3 h-3 text-[#8c8c8c] shrink-0" />
+                          <Phone className="w-3 h-3 text-muted-foreground shrink-0" />
                           {item.phone}
                         </div>
                       </div>
                     </td>
                     <td className=" align-top text-start min-w-0">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#000000]/5 text-[#000000] truncate max-w-full">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/5 text-foreground truncate max-w-full">
                         {item.event}
                       </span>
                     </td>
                     <td className=" align-top text-start min-w-0">
                       <div className="flex flex-wrap gap-1 min-w-0">
                         {item.seats.map((seat, idx) => (
-                          <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#8c8c8c]/10 text-[#525252]">
+                          <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#8c8c8c]/10 text-muted-foreground">
                             {seat}
                           </span>
                         ))}
@@ -283,7 +283,7 @@ export function AdminIncompletePayments() {
                           item.paymentStatus === 'cancelled'
                             ? 'bg-red-500/15 text-red-900'
                             : item.paymentStatus === 'expired'
-                              ? 'bg-[#8c8c8c]/15 text-[#525252]'
+                              ? 'bg-[#8c8c8c]/15 text-muted-foreground'
                               : 'bg-amber-500/15 text-amber-900'
                         }`}
                       >
@@ -295,12 +295,12 @@ export function AdminIncompletePayments() {
                       </span>
                     </td>
                     <td className=" align-top text-start">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#b7b7b7]/20 text-[#525252]">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#b7b7b7]/20 text-muted-foreground">
                         {t('admin.incomplete.step_checkout')}
                       </span>
                     </td>
                     <td className=" align-top text-start min-w-0">
-                      <div className="flex flex-col gap-0.5 text-sm text-[#8c8c8c]">
+                      <div className="flex flex-col gap-0.5 text-sm text-muted-foreground">
                         <div className="flex items-center gap-2">
                           <Clock className="w-3 h-3 shrink-0" />
                           {item.timeElapsed}
@@ -319,7 +319,7 @@ export function AdminIncompletePayments() {
                     <td className=" align-top text-end">
                       <a
                         href={`mailto:${item.email}?subject=${encodeURIComponent('Complete your payment')}`}
-                        className="inline-flex px-3 py-1.5 bg-black text-white rounded-lg text-xs font-medium hover:bg-accent transition-colors gap-1 items-center"
+                        className="inline-flex px-3 py-1.5 bg-primary text-primary-foreground rounded-lg text-xs font-medium hover:bg-accent transition-colors gap-1 items-center"
                       >
                         <Mail className="w-4 h-4" />
                       </a>
@@ -330,7 +330,7 @@ export function AdminIncompletePayments() {
 
               {!isLoading && items.length === 0 && (
                 <tr>
-                  <td colSpan={9} className="py-8 text-center text-[#8c8c8c]">
+                  <td colSpan={9} className="py-8 text-center text-muted-foreground">
                     {t('admin.incomplete.none')}
                   </td>
                 </tr>

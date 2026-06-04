@@ -136,7 +136,7 @@ export function AdminQRScanner() {
       case 'valid': return 'bg-green-600';
       case 'duplicate': return 'bg-red-600';
       case 'invalid': return 'bg-yellow-500';
-      default: return 'bg-[#000000]';
+      default: return 'bg-primary';
     }
   };
 
@@ -147,7 +147,7 @@ export function AdminQRScanner() {
   return (
     <div className={`fixed inset-0 z-50 flex flex-col ${getBackgroundColor()} transition-colors duration-300`}>
       {/* Top Bar */}
-      <header className="px-6 py-4 flex items-center justify-between text-white bg-black/20 backdrop-blur-md">
+      <header className="px-6 py-4 flex items-center justify-between text-white bg-secondary/20 backdrop-blur-md">
         <div className="flex items-center gap-3">
           <button
             onClick={() => { stopCamera(); navigate(-1); }}
@@ -172,7 +172,7 @@ export function AdminQRScanner() {
       </header>
 
       {/* Event Selector */}
-      <div className="bg-black/40 text-white px-6 py-3 border-b border-white/10">
+      <div className="bg-secondary/40 text-white px-6 py-3 border-b border-white/10">
         <div className="text-sm text-white/70 mb-1">{t('admin.scanner.scanning_for')}</div>
         <div className="relative inline-block">
           <select
@@ -180,12 +180,12 @@ export function AdminQRScanner() {
             onChange={(e) => setSelectedEventId(e.target.value)}
             className="appearance-none bg-transparent font-bold text-lg text-white focus:outline-none cursor-pointer pe-8 ps-0"
           >
-            <option value="" className="bg-black text-white">{t('admin.scanner.select_event')}</option>
+            <option value="" className="bg-primary text-primary-foreground">{t('admin.scanner.select_event')}</option>
             {events.map((event) => {
               const date = new Date(event.date_time);
               const label = `${event.title} — ${date.toLocaleDateString(locale, { day: '2-digit', month: 'short' })}`;
               return (
-                <option key={event.id} value={event.id} className="bg-black text-white">
+                <option key={event.id} value={event.id} className="bg-primary text-primary-foreground">
                   {label}
                 </option>
               );
@@ -266,7 +266,7 @@ export function AdminQRScanner() {
                 {duplicateGuestName && (
                   <div className="text-xl text-white font-['Tajawal'] mb-4">{duplicateGuestName}</div>
                 )}
-                <div className="bg-black/20 p-4 rounded-lg text-start max-w-sm mb-8 space-y-3">
+                <div className="bg-secondary/20 p-4 rounded-lg text-start max-w-sm mb-8 space-y-3">
                   <p className="text-white/80 text-sm">{t('admin.scanner.already_scanned')}</p>
                   {duplicateUsedAtIso && (
                     <div className="pt-2 border-t border-white/10">
@@ -282,7 +282,7 @@ export function AdminQRScanner() {
                 </div>
                 <button
                   onClick={handleAcknowledge}
-                  className="px-8 py-4 bg-white text-red-600 font-bold rounded-xl text-lg hover:bg-white/90 transition-colors w-full max-w-sm"
+                  className="px-8 py-4 bg-card text-red-500 font-bold rounded-xl text-lg hover:bg-card/90 border border-red-500/30 transition-colors w-full max-w-sm"
                 >
                   {t('admin.scanner.acknowledge')}
                 </button>
@@ -298,7 +298,7 @@ export function AdminQRScanner() {
                 <div className="text-lg text-white/90 font-medium mb-8">{t('admin.scanner.invalid_desc')}</div>
                 <button
                   onClick={handleAcknowledge}
-                  className="px-8 py-4 bg-white text-yellow-600 font-bold rounded-xl text-lg hover:bg-white/90 transition-colors w-full max-w-sm"
+                  className="px-8 py-4 bg-card text-yellow-500 font-bold rounded-xl text-lg hover:bg-card/90 border border-yellow-500/30 transition-colors w-full max-w-sm"
                 >
                   {t('admin.scanner.acknowledge')}
                 </button>
@@ -310,7 +310,7 @@ export function AdminQRScanner() {
 
       {/* Bottom Controls */}
       {(scanState === 'idle' || scanState === 'scanning') && (
-        <div className="px-6 py-8 bg-black/40 backdrop-blur-md">
+        <div className="px-6 py-8 bg-secondary/40 backdrop-blur-md">
           <div className="flex justify-between items-center max-w-md mx-auto gap-4">
             <button
               onClick={cameraActive ? stopCamera : startCamera}
@@ -323,7 +323,7 @@ export function AdminQRScanner() {
             <button
               onClick={() => setShowManual(true)}
               disabled={!selectedEventId}
-              className="flex-1 py-4 bg-white text-black font-bold rounded-full hover:bg-white/90 transition-colors shadow-lg flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="flex-1 py-4 bg-primary text-primary-foreground font-bold rounded-full hover:bg-accent transition-colors shadow-lg flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <QrCode size={20} />
               {t('admin.scanner.manual_entry')}
@@ -337,23 +337,23 @@ export function AdminQRScanner() {
 
       {/* Manual Entry Modal */}
       {showManual && (
-        <div className="absolute inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-6 animate-in fade-in">
-          <div className="bg-[#e8e8e8] rounded-2xl w-full max-w-sm overflow-hidden">
-            <div className="p-4 border-b border-[#e8e8e8] flex justify-between items-center bg-white">
-              <h3 className="font-bold text-[#000000]">{t('admin.scanner.enter_code')}</h3>
-              <button onClick={() => setShowManual(false)} className="text-[#8c8c8c] hover:text-[#000000]">
+        <div className="absolute inset-0 bg-secondary/80 backdrop-blur-sm z-50 flex items-center justify-center p-6 animate-in fade-in">
+          <div className="bg-muted rounded-2xl w-full max-w-sm overflow-hidden">
+            <div className="p-4 border-b border-border flex justify-between items-center bg-card">
+              <h3 className="font-bold text-foreground">{t('admin.scanner.enter_code')}</h3>
+              <button onClick={() => setShowManual(false)} className="text-muted-foreground hover:text-foreground">
                 <X size={24} />
               </button>
             </div>
-            <div className="p-6 bg-white">
+            <div className="p-6 bg-card">
               <div className="relative">
-                <Search className="absolute top-1/2 -translate-y-1/2 text-[#8c8c8c] start-4" size={20} />
+                <Search className="absolute top-1/2 -translate-y-1/2 text-muted-foreground start-4" size={20} />
                 <input
                   type="text"
                   value={manualCode}
                   onChange={(e) => setManualCode(e.target.value.toUpperCase())}
                   placeholder={t('admin.scanner.ticket_code_ph')}
-                  className="w-full bg-[#e8e8e8] border-2 border-[#e8e8e8] rounded-xl py-4 ps-12 pe-4 text-xl font-bold font-['Space_Grotesk'] focus:border-[#000000] focus:ring-0 outline-none uppercase"
+                  className="w-full bg-muted border-2 border-border rounded-xl py-4 ps-12 pe-4 text-xl font-bold font-['Space_Grotesk'] focus:border-primary focus:ring-0 outline-none uppercase"
                   autoFocus
                 />
               </div>
@@ -363,7 +363,7 @@ export function AdminQRScanner() {
                   handleScan(manualCode);
                 }}
                 disabled={manualCode.length < 3 || !selectedEventId}
-                className="w-full mt-6 py-4 bg-primary text-primary-foreground font-bold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-black transition-colors"
+                className="w-full mt-6 py-4 bg-primary text-primary-foreground font-bold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-secondary transition-colors"
               >
                 {t('admin.scanner.lookup')}
               </button>

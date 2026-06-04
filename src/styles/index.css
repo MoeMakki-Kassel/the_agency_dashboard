@@ -23,12 +23,12 @@ html {
 }
 
 .admin-table thead {
-  background-color: #e8e8e8;
+  background-color: var(--muted);
   font-size: 0.6875rem;
   line-height: 1.25;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #8c8c8c;
+  color: var(--muted-foreground);
 }
 
 .admin-table th {

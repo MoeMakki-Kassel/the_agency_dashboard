@@ -131,7 +131,7 @@ export function AdminVenueSetup() {
   };
 
   if (authLoading || !token) {
-    return <div className="py-24 text-center text-sm text-[#8c8c8c]">Loading…</div>;
+    return <div className="py-24 text-center text-sm text-muted-foreground">Loading…</div>;
   }
 
   if (isError && !template) {
@@ -141,7 +141,7 @@ export function AdminVenueSetup() {
         <button type="button" onClick={() => refetch()} className="text-sm underline">
           Try again
         </button>
-        <Link to="/venues" className="block text-sm text-[#8c8c8c]">
+        <Link to="/venues" className="block text-sm text-muted-foreground">
           ← Back to venues
         </Link>
       </div>
@@ -149,7 +149,7 @@ export function AdminVenueSetup() {
   }
 
   if (isPending || (isFetching && !ready) || !template || !ready) {
-    return <div className="py-24 text-center text-sm text-[#8c8c8c]">Loading venue setup…</div>;
+    return <div className="py-24 text-center text-sm text-muted-foreground">Loading venue setup…</div>;
   }
 
   return (
@@ -157,20 +157,20 @@ export function AdminVenueSetup() {
       <div className="flex items-start gap-4">
         <Link
           to="/venues"
-          className="w-10 h-10 rounded-full border border-[#e8e8e8] flex items-center justify-center text-[#8c8c8c] hover:text-black shrink-0"
+          className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground shrink-0"
         >
           <ArrowLeft size={20} />
         </Link>
         <div>
           <h1 className="text-2xl font-bold font-['Tajawal']">Define sections & tiers</h1>
-          <p className="text-sm text-[#8c8c8c] mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             Each venue can have different sections (VVIP, balconies, general admission, etc.). Set them up
             before placing seats on the floor plan.
           </p>
         </div>
       </div>
 
-      <div className="bg-white border border-[#e8e8e8] rounded-xl p-5 space-y-4">
+      <div className="bg-card border border-border rounded-xl p-5 space-y-4">
         <div>
           <label htmlFor="venue-setup-name" className="block text-sm font-medium mb-1">
             Venue name
@@ -179,12 +179,12 @@ export function AdminVenueSetup() {
             id="venue-setup-name"
             value={venueName}
             onChange={(e) => setVenueName(e.target.value)}
-            className="w-full border border-[#e8e8e8] rounded-lg py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-black"
+            className="w-full border border-border rounded-lg py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
 
         {template.layout?.floor_plan_url ? (
-          <p className="text-xs text-[#525252] bg-[#fafafa] border border-[#e8e8e8] rounded-lg px-3 py-2">
+          <p className="text-xs text-muted-foreground bg-muted border border-border rounded-lg px-3 py-2">
             Floor plan uploaded. Continue when your sections match this venue.
           </p>
         ) : (
@@ -198,7 +198,7 @@ export function AdminVenueSetup() {
         <button
           type="button"
           onClick={() => applyPreset(IYAD_TIER_PRESET)}
-          className="text-xs px-3 py-1.5 border border-[#e8e8e8] rounded-lg hover:bg-[#fafafa]"
+          className="text-xs px-3 py-1.5 border border-border rounded-lg hover:bg-muted"
         >
           Load IYAD theatre preset
         </button>
@@ -210,7 +210,7 @@ export function AdminVenueSetup() {
           <button
             type="button"
             onClick={addRow}
-            className="inline-flex items-center gap-1 text-sm font-medium text-[#525252] hover:text-black"
+            className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground"
           >
             <Plus size={16} />
             Add tier
@@ -220,15 +220,15 @@ export function AdminVenueSetup() {
         {rows.map((row, index) => (
           <div
             key={row.localId}
-            className="bg-white border border-[#e8e8e8] rounded-xl p-4 space-y-3"
+            className="bg-card border border-border rounded-xl p-4 space-y-3"
           >
             <div className="flex justify-between items-center">
-              <span className="text-xs font-medium text-[#8c8c8c]">Tier {index + 1}</span>
+              <span className="text-xs font-medium text-muted-foreground">Tier {index + 1}</span>
               <button
                 type="button"
                 onClick={() => removeRow(row.localId)}
                 disabled={rows.length <= 1}
-                className="p-1.5 text-[#8c8c8c] hover:text-red-600 disabled:opacity-30"
+                className="p-1.5 text-muted-foreground hover:text-red-600 disabled:opacity-30"
                 aria-label="Remove tier"
               >
                 <Trash2 size={16} />
@@ -237,16 +237,16 @@ export function AdminVenueSetup() {
 
             <div className="grid sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-medium text-[#525252] mb-1">Display name</label>
+                <label className="block text-xs font-medium text-muted-foreground mb-1">Display name</label>
                 <input
                   value={row.name}
                   onChange={(e) => updateRow(row.localId, { name: e.target.value })}
                   placeholder="e.g. VVIP, Balcony Left"
-                  className="w-full border border-[#e8e8e8] rounded-lg px-3 py-2 text-sm"
+                  className="w-full border border-border rounded-lg px-3 py-2 text-sm"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-[#525252] mb-1">Internal key</label>
+                <label className="block text-xs font-medium text-muted-foreground mb-1">Internal key</label>
                 <input
                   value={row.key}
                   onChange={(e) =>
@@ -256,15 +256,15 @@ export function AdminVenueSetup() {
                     })
                   }
                   placeholder="e.g. vvip, balcony_left"
-                  className="w-full border border-[#e8e8e8] rounded-lg px-3 py-2 text-sm font-mono"
+                  className="w-full border border-border rounded-lg px-3 py-2 text-sm font-mono"
                 />
-                <p className="text-[10px] text-[#8c8c8c] mt-0.5">Used in seat data; auto-filled from name if left blank.</p>
+                <p className="text-[10px] text-muted-foreground mt-0.5">Used in seat data; auto-filled from name if left blank.</p>
               </div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-medium text-[#525252] mb-1">Type</label>
+                <label className="block text-xs font-medium text-muted-foreground mb-1">Type</label>
                 <select
                   value={row.selection_mode}
                   onChange={(e) =>
@@ -272,7 +272,7 @@ export function AdminVenueSetup() {
                       selection_mode: e.target.value as TierDraftRow['selection_mode'],
                     })
                   }
-                  className="w-full border border-[#e8e8e8] rounded-lg px-3 py-2 text-sm"
+                  className="w-full border border-border rounded-lg px-3 py-2 text-sm"
                 >
                   <option value="assigned">Assigned seats (on map)</option>
                   <option value="general_admission">General admission (no map seats)</option>
@@ -280,13 +280,13 @@ export function AdminVenueSetup() {
               </div>
               {row.selection_mode === 'general_admission' && (
                 <div>
-                  <label className="block text-xs font-medium text-[#525252] mb-1">Capacity</label>
+                  <label className="block text-xs font-medium text-muted-foreground mb-1">Capacity</label>
                   <input
                     type="number"
                     min={1}
                     value={row.capacity}
                     onChange={(e) => updateRow(row.localId, { capacity: e.target.value })}
-                    className="w-full border border-[#e8e8e8] rounded-lg px-3 py-2 text-sm"
+                    className="w-full border border-border rounded-lg px-3 py-2 text-sm"
                   />
                 </div>
               )}
@@ -295,12 +295,12 @@ export function AdminVenueSetup() {
         ))}
       </div>
 
-      <div className="flex justify-end sticky bottom-0 bg-[#fafafa] py-4 border-t border-[#e8e8e8] -mx-4 px-4 sm:mx-0 sm:px-0 sm:bg-transparent sm:border-0 sm:static">
+      <div className="flex justify-end sticky bottom-0 bg-muted py-4 border-t border-border -mx-4 px-4 sm:mx-0 sm:px-0 sm:bg-transparent sm:border-0 sm:static">
         <button
           type="button"
           onClick={handleContinue}
           disabled={saveMutation.isPending || !template.layout?.floor_plan_url}
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-black text-white rounded-lg text-sm font-medium hover:bg-accent disabled:opacity-50"
+          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-accent disabled:opacity-50"
         >
           {saveMutation.isPending ? 'Saving…' : 'Continue to seat editor'}
           <ArrowRight size={16} />

@@ -138,15 +138,15 @@ export function AdminOverview() {
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold font-['Tajawal'] text-[#000000]">{t('admin.overview.title')}</h1>
-          <p className="text-[#8c8c8c] mt-1">{t('admin.overview.subtitle')}</p>
+          <h1 className="text-3xl font-bold font-['Tajawal'] text-foreground">{t('admin.overview.title')}</h1>
+          <p className="text-muted-foreground mt-1">{t('admin.overview.subtitle')}</p>
         </div>
         <div className="flex flex-col xs:flex-row flex-wrap gap-3 w-full lg:w-auto">
           <AdminRefreshButton onClick={handleRefresh} isFetching={isRefreshing} />
           <button
             type="button"
             onClick={exportOverview}
-            className="px-4 py-2 border border-[#e8e8e8] bg-white rounded-lg text-sm font-medium hover:bg-[#e8e8e8] transition-colors w-full sm:w-auto"
+            className="px-4 py-2 border border-border bg-card rounded-lg text-sm font-medium hover:bg-muted transition-colors w-full sm:w-auto"
           >
             {t('admin.common.export_report')}
           </button>
@@ -162,102 +162,102 @@ export function AdminOverview() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {analyticsLoading ? (
           Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="bg-white p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8] animate-pulse">
+            <div key={i} className="bg-card p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border animate-pulse">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
-                  <div className="h-4 bg-[#e8e8e8] rounded w-28 mb-3"></div>
-                  <div className="h-7 bg-[#e8e8e8] rounded w-20"></div>
+                  <div className="h-4 bg-muted rounded w-28 mb-3"></div>
+                  <div className="h-7 bg-muted rounded w-20"></div>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-[#e8e8e8]"></div>
+                <div className="w-10 h-10 rounded-full bg-muted"></div>
               </div>
-              <div className="mt-4 h-4 bg-[#e8e8e8] rounded w-32"></div>
+              <div className="mt-4 h-4 bg-muted rounded w-32"></div>
             </div>
           ))
         ) : (
           <>
-            <div className="bg-white p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8]">
+            <div className="bg-card p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border">
               <div className="flex justify-between items-start gap-2">
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-[#8c8c8c]">{t('admin.overview.new_users')}</p>
-                  <h3 className="text-2xl font-bold text-[#000000] mt-2 font-['Space_Grotesk']">
+                  <p className="text-sm font-medium text-muted-foreground">{t('admin.overview.new_users')}</p>
+                  <h3 className="text-2xl font-bold text-foreground mt-2 font-['Space_Grotesk']">
                     {stats ? formatNumber(stats.new_users.count) : '—'}
                   </h3>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-[#000000]/10 flex items-center justify-center text-[#000000] shrink-0">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-foreground shrink-0">
                   <TrendingUp size={20} />
                 </div>
               </div>
               <div className="mt-4 flex items-center text-sm flex-wrap gap-1">
-                <span className="text-[#525252] font-medium flex items-center gap-1">
+                <span className="text-muted-foreground font-medium flex items-center gap-1">
                   <TrendingUp size={14} />
                   {stats ? changeFmt(stats.new_users.change) : '—'}
                 </span>
-                <span className="text-[#8c8c8c] ms-1">{t('admin.overview.vs_previous')}</span>
+                <span className="text-muted-foreground ms-1">{t('admin.overview.vs_previous')}</span>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8]">
+            <div className="bg-card p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border">
               <div className="flex justify-between items-start gap-2">
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-[#8c8c8c]">{t('admin.overview.events_hosted')}</p>
-                  <h3 className="text-2xl font-bold text-[#000000] mt-2 font-['Space_Grotesk']">
+                  <p className="text-sm font-medium text-muted-foreground">{t('admin.overview.events_hosted')}</p>
+                  <h3 className="text-2xl font-bold text-foreground mt-2 font-['Space_Grotesk']">
                     {stats ? formatNumber(stats.events_hosted.count) : '—'}
                   </h3>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-[#8c8c8c]/10 flex items-center justify-center text-[#8c8c8c] shrink-0">
+                <div className="w-10 h-10 rounded-full bg-[#8c8c8c]/10 flex items-center justify-center text-muted-foreground shrink-0">
                   <Ticket size={20} />
                 </div>
               </div>
               <div className="mt-4 flex items-center text-sm flex-wrap gap-1">
-                <span className="text-[#525252] font-medium flex items-center gap-1">
+                <span className="text-muted-foreground font-medium flex items-center gap-1">
                   <TrendingUp size={14} />
                   {stats ? changeFmt(stats.events_hosted.change) : '—'}
                 </span>
-                <span className="text-[#8c8c8c] ms-1">{t('admin.overview.vs_previous')}</span>
+                <span className="text-muted-foreground ms-1">{t('admin.overview.vs_previous')}</span>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8]">
+            <div className="bg-card p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border">
               <div className="flex justify-between items-start gap-2">
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-[#8c8c8c]">{t('admin.overview.conversion_rate')}</p>
-                  <h3 className="text-2xl font-bold text-[#000000] mt-2 font-['Space_Grotesk']">
+                  <p className="text-sm font-medium text-muted-foreground">{t('admin.overview.conversion_rate')}</p>
+                  <h3 className="text-2xl font-bold text-foreground mt-2 font-['Space_Grotesk']">
                     {stats ? `${formatNumber(stats.conversion_rate.rate, { maximumFractionDigits: 1 })}%` : '—'}
                   </h3>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-[#525252]/10 flex items-center justify-center text-[#525252] shrink-0">
+                <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-muted-foreground shrink-0">
                   <Activity size={20} />
                 </div>
               </div>
               <div className="mt-4 flex items-center text-sm flex-wrap gap-1">
-                <span className="text-[#525252] font-medium flex items-center gap-1">
+                <span className="text-muted-foreground font-medium flex items-center gap-1">
                   <TrendingUp size={14} />
                   {stats ? changeFmt(stats.conversion_rate.change) : '—'}
                 </span>
-                <span className="text-[#8c8c8c] ms-1">{t('admin.overview.vs_previous')}</span>
+                <span className="text-muted-foreground ms-1">{t('admin.overview.vs_previous')}</span>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8]">
+            <div className="bg-card p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border">
               <div className="flex justify-between items-start gap-2">
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-[#8c8c8c]">{t('admin.overview.page_views')}</p>
-                  <h3 className="text-2xl font-bold text-[#000000] mt-2 font-['Space_Grotesk']">
+                  <p className="text-sm font-medium text-muted-foreground">{t('admin.overview.page_views')}</p>
+                  <h3 className="text-2xl font-bold text-foreground mt-2 font-['Space_Grotesk']">
                     {pageViewsDisplay}
                   </h3>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-[#000000]/10 flex items-center justify-center text-[#000000] shrink-0">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-foreground shrink-0">
                   <Globe size={20} />
                 </div>
               </div>
               <div className="mt-4 flex items-center text-sm flex-wrap gap-1">
-                <span className="text-[#525252] font-medium flex items-center gap-1">
+                <span className="text-muted-foreground font-medium flex items-center gap-1">
                   <TrendingUp size={14} />
                   {stats?.total_page_views?.change != null
                     ? changeFmt(stats.total_page_views.change)
                     : '—'}
                 </span>
-                <span className="text-[#8c8c8c] ms-1">{t('admin.overview.vs_previous')}</span>
+                <span className="text-muted-foreground ms-1">{t('admin.overview.vs_previous')}</span>
               </div>
             </div>
           </>
@@ -265,13 +265,13 @@ export function AdminOverview() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8]">
+        <div className="lg:col-span-2 bg-card p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
-            <h3 className="text-lg font-bold font-['Tajawal'] text-[#000000]">{t('admin.overview.revenue_overview')}</h3>
+            <h3 className="text-lg font-bold font-['Tajawal'] text-foreground">{t('admin.overview.revenue_overview')}</h3>
             <select
               value={period}
               onChange={(e) => setPeriod(e.target.value as AnalyticsPeriod)}
-              className="bg-[#e8e8e8] border-none text-sm rounded-md px-3 py-1.5 focus:ring-2 focus:ring-[#000000] outline-none max-w-full"
+              className="bg-muted border-none text-sm rounded-md px-3 py-1.5 focus:ring-2 focus:ring-primary outline-none max-w-full"
             >
               {ANALYTICS_PERIOD_SEQUENCE.map((p) => (
                 <option key={p} value={p}>{t(analyticsPeriodLabelKey(p))}</option>
@@ -316,16 +316,16 @@ export function AdminOverview() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8]">
+        <div className="bg-card p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border">
           <div className="flex justify-between items-center mb-6 gap-2">
-            <h3 className="text-lg font-bold font-['Tajawal'] text-[#000000]">{t('admin.overview.top_events')}</h3>
-            <Link to="/events" className="text-sm text-[#000000] hover:underline shrink-0">
+            <h3 className="text-lg font-bold font-['Tajawal'] text-foreground">{t('admin.overview.top_events')}</h3>
+            <Link to="/events" className="text-sm text-foreground hover:underline shrink-0">
               {t('admin.common.view_all')}
             </Link>
           </div>
           <div className="space-y-6">
             {topEvents.length === 0 && (
-              <p className="text-sm text-[#8c8c8c]">{t('admin.overview.no_events')}</p>
+              <p className="text-sm text-muted-foreground">{t('admin.overview.no_events')}</p>
             )}
             {topEvents.map((event, i) => {
               const n = event.tiers?.length ?? 0;
@@ -341,8 +341,8 @@ export function AdminOverview() {
                       />
                     )}
                     <div className="flex-1 min-w-0">
-                      <span className="font-medium text-[#000000] text-sm truncate block">{event.title}</span>
-                      <span className="text-xs text-[#8c8c8c]">{tierLabel}</span>
+                      <span className="font-medium text-foreground text-sm truncate block">{event.title}</span>
+                      <span className="text-xs text-muted-foreground">{tierLabel}</span>
                     </div>
                   </div>
                 </div>
@@ -352,10 +352,10 @@ export function AdminOverview() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8] overflow-hidden">
-        <div className="p-6 border-b border-[#e8e8e8] flex justify-between items-center gap-2 flex-wrap">
-          <h3 className="text-lg font-bold font-['Tajawal'] text-[#000000]">{t('admin.overview.recent_reservations')}</h3>
-          <Link to="/reservations" className="text-sm font-medium text-[#000000] flex items-center gap-1 hover:underline">
+      <div className="bg-card rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border overflow-hidden">
+        <div className="p-6 border-b border-border flex justify-between items-center gap-2 flex-wrap">
+          <h3 className="text-lg font-bold font-['Tajawal'] text-foreground">{t('admin.overview.recent_reservations')}</h3>
+          <Link to="/reservations" className="text-sm font-medium text-foreground flex items-center gap-1 hover:underline">
             {t('admin.common.view_all')}
             <ArrowRight size={16} className="rtl:rotate-180" />
           </Link>
@@ -387,19 +387,19 @@ export function AdminOverview() {
             <tbody className="divide-y divide-[#e8e8e8]">
               {reservationsLoading && Array.from({ length: 4 }).map((_, i) => (
                 <tr key={`skeleton-${i}`} className="animate-pulse">
-                  <td className=""><div className="h-4 bg-[#e8e8e8] rounded w-16"></div></td>
-                  <td className=""><div className="h-4 bg-[#e8e8e8] rounded w-28"></div></td>
-                  <td className=""><div className="h-4 bg-[#e8e8e8] rounded w-36"></div></td>
-                  <td className=""><div className="h-4 bg-[#e8e8e8] rounded w-14"></div></td>
-                  <td className=""><div className="h-5 bg-[#e8e8e8] rounded-full w-20"></div></td>
-                  <td className=""><div className="h-4 bg-[#e8e8e8] rounded w-20"></div></td>
+                  <td className=""><div className="h-4 bg-muted rounded w-16"></div></td>
+                  <td className=""><div className="h-4 bg-muted rounded w-28"></div></td>
+                  <td className=""><div className="h-4 bg-muted rounded w-36"></div></td>
+                  <td className=""><div className="h-4 bg-muted rounded w-14"></div></td>
+                  <td className=""><div className="h-5 bg-muted rounded-full w-20"></div></td>
+                  <td className=""><div className="h-4 bg-muted rounded w-20"></div></td>
                   <td className=""></td>
                 </tr>
               ))}
 
               {!reservationsLoading && recentReservations.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="px-6 py-8 text-center text-[#8c8c8c]">{t('admin.overview.no_reservations')}</td>
+                  <td colSpan={7} className="px-6 py-8 text-center text-muted-foreground">{t('admin.overview.no_reservations')}</td>
                 </tr>
               )}
 
@@ -409,22 +409,22 @@ export function AdminOverview() {
                 const refId = res.reference_number ? String(res.reference_number) : res.id.slice(0, 8);
                 const status = res.payment_status;
                 return (
-                  <tr key={res.id ?? i} className="hover:bg-[#e8e8e8]/50 transition-colors">
-                    <td className=" align-top text-start font-mono text-[#000000]">{refId}</td>
-                    <td className=" align-top text-start font-medium text-[#000000] min-w-0 truncate">{customerName}</td>
-                    <td className=" align-top text-start text-[#8c8c8c] min-w-0 truncate">{eventName}</td>
+                  <tr key={res.id ?? i} className="hover:bg-muted/50 transition-colors">
+                    <td className=" align-top text-start font-mono text-foreground">{refId}</td>
+                    <td className=" align-top text-start font-medium text-foreground min-w-0 truncate">{customerName}</td>
+                    <td className=" align-top text-start text-muted-foreground min-w-0 truncate">{eventName}</td>
                     <td className=" align-top text-end font-['Space_Grotesk'] font-medium tabular-nums">{formatCurrency(res.total_amount)}</td>
                     <td className=" align-top text-start">
                       <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                        status === 'paid' ? 'bg-[#525252]/10 text-[#525252]' :
-                        'bg-[#8c8c8c]/10 text-[#8c8c8c]'
+                        status === 'paid' ? 'bg-secondary/10 text-muted-foreground' :
+                        'bg-[#8c8c8c]/10 text-muted-foreground'
                       }`}>
                         {capitalizeFirst(status)}
                       </span>
                     </td>
-                    <td className=" align-top text-start text-[#8c8c8c] tabular-nums">{timeAgo(res.created_at)}</td>
+                    <td className=" align-top text-start text-muted-foreground tabular-nums">{timeAgo(res.created_at)}</td>
                     <td className=" align-top text-end">
-                      <Link to="/reservations" className="text-[#8c8c8c] hover:text-[#000000] inline-flex p-1" aria-label={t('admin.common.view_all')}>
+                      <Link to="/reservations" className="text-muted-foreground hover:text-foreground inline-flex p-1" aria-label={t('admin.common.view_all')}>
                         <MoreHorizontal size={20} />
                       </Link>
                     </td>

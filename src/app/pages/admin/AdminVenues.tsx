@@ -84,7 +84,7 @@ export function AdminVenues() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold font-['Tajawal']">Venue templates</h1>
-          <p className="text-sm text-[#8c8c8c] mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             Upload floor plans and mark seats as SVG overlays for interactive booking.
           </p>
         </div>
@@ -92,7 +92,7 @@ export function AdminVenues() {
           type="button"
           onClick={handlePickFloorPlan}
           disabled={createMutation.isPending}
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-black text-white rounded-lg text-sm font-medium hover:bg-accent disabled:opacity-60"
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-accent disabled:opacity-60"
         >
           <Plus size={18} />
           {createMutation.isPending ? 'Uploading…' : 'Add venue'}
@@ -111,25 +111,25 @@ export function AdminVenues() {
         />
       </div>
 
-      {isLoading && <p className="text-sm text-[#8c8c8c]">Loading…</p>}
+      {isLoading && <p className="text-sm text-muted-foreground">Loading…</p>}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {templates.map((t) => (
           <div
             key={t.id}
-            className="relative bg-white border border-[#e8e8e8] rounded-xl p-5 hover:border-[#000000] transition-colors group"
+            className="relative bg-card border border-border rounded-xl p-5 hover:border-[#000000] transition-colors group"
           >
             <Link to={`/venues/${t.id}/edit`} className="block">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-lg bg-[#e8e8e8] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center shrink-0">
                   <Map size={20} />
                 </div>
                 <div className="min-w-0">
-                  <h2 className="font-bold text-[#000000] truncate">{t.name}</h2>
-                  <p className="text-xs text-[#8c8c8c] truncate">{t.slug}</p>
+                  <h2 className="font-bold text-foreground truncate">{t.name}</h2>
+                  <p className="text-xs text-muted-foreground truncate">{t.slug}</p>
                 </div>
               </div>
-              <p className="text-xs text-[#525252]">
+              <p className="text-xs text-muted-foreground">
                 {t.tier_config?.length ?? 0} tiers ·{' '}
                 <span className="underline">Edit map</span> →
               </p>
@@ -139,16 +139,16 @@ export function AdminVenues() {
       </div>
 
       {!isLoading && templates.length === 0 && (
-        <div className="text-center py-16 border border-dashed border-[#e8e8e8] rounded-xl">
-          <Upload className="mx-auto text-[#8c8c8c] mb-3" size={32} />
-          <p className="text-sm text-[#8c8c8c] mb-4">
+        <div className="text-center py-16 border border-dashed border-border rounded-xl">
+          <Upload className="mx-auto text-muted-foreground mb-3" size={32} />
+          <p className="text-sm text-muted-foreground mb-4">
             No venue templates yet. Add a venue and choose a floor plan image to start marking seats.
           </p>
           <button
             type="button"
             onClick={handlePickFloorPlan}
             disabled={createMutation.isPending}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-black text-white rounded-lg text-sm font-medium hover:bg-accent disabled:opacity-60"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-accent disabled:opacity-60"
           >
             <Plus size={18} />
             {createMutation.isPending ? 'Uploading…' : 'Add venue'}

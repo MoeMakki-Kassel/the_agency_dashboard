@@ -133,14 +133,14 @@ export function AdminSponsors() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold font-['Tajawal'] text-ink-black">{t('admin.sponsors.title')}</h1>
-          <p className="text-[#8c8c8c] text-sm mt-1">{t('admin.sponsors.subtitle')}</p>
+          <p className="text-muted-foreground text-sm mt-1">{t('admin.sponsors.subtitle')}</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <AdminRefreshButton onClick={() => void refetch()} isFetching={isFetching} />
           <button
             type="button"
             onClick={() => handleOpenModal()}
-            className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg text-sm font-medium hover:bg-accent transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-accent transition-colors"
           >
             <Plus className="w-4 h-4" />
             {t('admin.sponsors.add_button')}
@@ -149,15 +149,15 @@ export function AdminSponsors() {
       </div>
 
       {/* Search */}
-      <div className="bg-white p-4 rounded-xl border border-warm-gray/50 shadow-sm">
+      <div className="bg-card p-4 rounded-xl border border-warm-gray/50 shadow-sm">
         <div className="relative">
-          <Search className="absolute top-1/2 -translate-y-1/2 text-[#8c8c8c] w-5 h-5 start-3" />
+          <Search className="absolute top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 start-3" />
           <input
             type="text"
             placeholder={t('admin.sponsors.search_ph')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full py-2 ps-10 pe-4 rounded-lg border border-warm-gray/50 focus:outline-none focus:ring-2 focus:ring-black/50 text-sm"
+            className="w-full py-2 ps-10 pe-4 rounded-lg border border-warm-gray/50 focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
           />
         </div>
       </div>
@@ -167,16 +167,16 @@ export function AdminSponsors() {
         {isLoading && (
           <>
             {[1, 2, 3].map((n) => (
-              <div key={n} className="bg-white rounded-xl border border-warm-gray/50 shadow-sm overflow-hidden animate-pulse">
+              <div key={n} className="bg-card rounded-xl border border-warm-gray/50 shadow-sm overflow-hidden animate-pulse">
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-4">
-                    <div className="w-16 h-16 rounded-lg bg-[#e8e8e8]" />
+                    <div className="w-16 h-16 rounded-lg bg-muted" />
                     <div className="flex gap-2">
-                      <div className="w-8 h-8 rounded-lg bg-[#e8e8e8]" />
-                      <div className="w-8 h-8 rounded-lg bg-[#e8e8e8]" />
+                      <div className="w-8 h-8 rounded-lg bg-muted" />
+                      <div className="w-8 h-8 rounded-lg bg-muted" />
                     </div>
                   </div>
-                  <div className="h-5 w-40 bg-[#e8e8e8] rounded" />
+                  <div className="h-5 w-40 bg-muted rounded" />
                 </div>
               </div>
             ))}
@@ -184,23 +184,23 @@ export function AdminSponsors() {
         )}
 
         {!isLoading && filteredSuppliers.map((supplier) => (
-          <div key={supplier.id} className="bg-white rounded-xl border border-warm-gray/50 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+          <div key={supplier.id} className="bg-card rounded-xl border border-warm-gray/50 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
             <div className="p-6">
               <div className="flex items-start justify-between mb-4">
-                <div className="w-16 h-16 rounded-lg bg-[#e8e8e8] flex items-center justify-center overflow-hidden">
+                <div className="w-16 h-16 rounded-lg bg-muted flex items-center justify-center overflow-hidden">
                   {supplier.logo ? (
                     <img src={supplier.logo} alt={supplier.sponsor_name} className="w-full h-full object-cover" />
                   ) : (
-                    <ImageIcon className="w-8 h-8 text-[#8c8c8c]" />
+                    <ImageIcon className="w-8 h-8 text-muted-foreground" />
                   )}
                 </div>
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleOpenModal(supplier)}
-                    className="p-2 hover:bg-[#e8e8e8] rounded-lg transition-colors"
+                    className="p-2 hover:bg-muted rounded-lg transition-colors"
                     title={t('admin.common.edit')}
                   >
-                    <Edit className="w-4 h-4 text-[#8c8c8c]" />
+                    <Edit className="w-4 h-4 text-muted-foreground" />
                   </button>
                   <button
                     onClick={() => handleDelete(supplier.id)}
@@ -220,20 +220,20 @@ export function AdminSponsors() {
 
         {!isLoading && filteredSuppliers.length === 0 && (
           <div className="col-span-full text-center py-12">
-            <p className="text-[#8c8c8c]">{t('admin.sponsors.none')}</p>
+            <p className="text-muted-foreground">{t('admin.sponsors.none')}</p>
           </div>
         )}
       </div>
 
       {/* Add/Edit Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl w-full max-w-lg overflow-hidden">
-            <div className="p-6 border-b border-[#e8e8e8] flex justify-between items-center">
+        <div className="fixed inset-0 bg-secondary/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-card rounded-2xl w-full max-w-lg overflow-hidden">
+            <div className="p-6 border-b border-border flex justify-between items-center">
               <h3 className="font-bold text-xl font-['Tajawal'] text-ink-black">
                 {editingSupplier ? t('admin.sponsors.edit') : t('admin.sponsors.add_new')}
               </h3>
-              <button onClick={handleCloseModal} className="text-[#8c8c8c] hover:text-black">
+              <button onClick={handleCloseModal} className="text-muted-foreground hover:text-foreground">
                 <X size={24} />
               </button>
             </div>
@@ -248,7 +248,7 @@ export function AdminSponsors() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Premium Sound Systems"
-                  className="w-full border border-[#e8e8e8] rounded-lg py-3 px-4 focus:ring-2 focus:ring-black/50 outline-none"
+                  className="w-full border border-border rounded-lg py-3 px-4 focus:ring-2 focus:ring-primary/50 outline-none"
                   required
                 />
               </div>
@@ -257,17 +257,17 @@ export function AdminSponsors() {
                 <label className="block text-sm font-medium mb-2">Logo</label>
                 <div
                   onClick={() => fileInputRef.current?.click()}
-                  className="w-full border-2 border-dashed border-[#e8e8e8] rounded-lg p-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-black/40 transition-colors"
+                  className="w-full border-2 border-dashed border-border rounded-lg p-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-primary/40 transition-colors"
                 >
                   {logoPreview ? (
                     <img src={logoPreview} alt="Logo preview" className="h-16 object-contain" />
                   ) : (
                     <>
-                      <Upload className="w-6 h-6 text-[#8c8c8c]" />
-                      <p className="text-sm text-[#8c8c8c]">Click to upload logo</p>
+                      <Upload className="w-6 h-6 text-muted-foreground" />
+                      <p className="text-sm text-muted-foreground">Click to upload logo</p>
                     </>
                   )}
-                  <p className="text-xs text-[#8c8c8c]">{logoPreview ? 'Click to change' : 'JPG, PNG, WEBP · max 2MB'}</p>
+                  <p className="text-xs text-muted-foreground">{logoPreview ? 'Click to change' : 'JPG, PNG, WEBP · max 2MB'}</p>
                 </div>
                 <input
                   ref={fileInputRef}
@@ -279,10 +279,10 @@ export function AdminSponsors() {
               </div>
             </div>
 
-            <div className="p-6 border-t border-[#e8e8e8] flex gap-3">
+            <div className="p-6 border-t border-border flex gap-3">
               <button
                 onClick={handleCloseModal}
-                className="flex-1 py-3 border-2 border-black text-black font-bold rounded-xl hover:bg-[#e8e8e8] transition-colors"
+                className="flex-1 py-3 border-2 border-primary text-foreground font-bold rounded-xl hover:bg-muted transition-colors"
               >
                 {t('admin.common.cancel')}
               </button>
@@ -290,7 +290,7 @@ export function AdminSponsors() {
                 type="button"
                 onClick={handleSave}
                 disabled={isSaving}
-                className="flex-1 py-3 bg-black text-white font-bold rounded-xl hover:bg-accent transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                className="flex-1 py-3 bg-primary text-primary-foreground font-bold rounded-xl hover:bg-accent transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {isSaving ? t('admin.sponsors.saving') : (editingSupplier ? t('admin.sponsors.save_update') : t('admin.sponsors.save_add'))}
               </button>

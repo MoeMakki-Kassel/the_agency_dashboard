@@ -20,40 +20,41 @@
 
 :root {
   --font-size: 16px;
-  --background: #FAFAFA;
-  --foreground: #0A0A0A;
-  --card: #FFFFFF;
-  --card-foreground: #0A0A0A;
-  --popover: #FFFFFF;
-  --popover-foreground: #0A0A0A;
+  /* Default dark theme to match the red+black brand. */
+  --background: #0A0A0A;
+  --foreground: #FAFAFA;
+  --card: #18181B;
+  --card-foreground: #FAFAFA;
+  --popover: #18181B;
+  --popover-foreground: #FAFAFA;
   --primary: #DC2626;
   --primary-foreground: #FFFFFF;
-  --secondary: #18181B;
+  --secondary: #27272A;
   --secondary-foreground: #FAFAFA;
-  --muted: #F4F4F5;
-  --muted-foreground: #71717A;
+  --muted: #27272A;
+  --muted-foreground: #A1A1AA;
   --accent: #7F1D1D;
   --accent-foreground: #FFFFFF;
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
-  --border: #E4E4E7;
-  --input: #FFFFFF;
-  --input-background: #FFFFFF;
-  --switch-background: #E4E4E7;
+  --border: #27272A;
+  --input: #18181B;
+  --input-background: #18181B;
+  --switch-background: #27272A;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --ring: #DC2626;
   --radius: 12px;
 
-  --ink-black: #0A0A0A;
-  --bone: #FAFAFA;
+  --ink-black: #FAFAFA;
+  --bone: #0A0A0A;
   --pure-white: #FFFFFF;
   --terracotta: #DC2626;
   --warm-amber: #EF4444;
   --stage-crimson: #7F1D1D;
-  --warm-gray: #E4E4E7;
-  --mid-gray: #71717A;
-  --deep-charcoal: #18181B;
+  --warm-gray: #27272A;
+  --mid-gray: #A1A1AA;
+  --deep-charcoal: #FAFAFA;
   --olive: #B91C1C;
   --brick-red: #EF4444;
 }

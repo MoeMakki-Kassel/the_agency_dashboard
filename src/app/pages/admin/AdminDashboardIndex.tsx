@@ -20,7 +20,7 @@ export function AdminDashboardIndex() {
 
   if (permsLoading || myPerms == null) {
     return (
-      <div className="flex flex-1 items-center justify-center min-h-[40vh] text-[#8c8c8c]">
+      <div className="flex flex-1 items-center justify-center min-h-[40vh] text-muted-foreground">
         Loading...
       </div>
     );

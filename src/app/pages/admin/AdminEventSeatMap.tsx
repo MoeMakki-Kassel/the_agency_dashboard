@@ -145,11 +145,11 @@ export function AdminEventSeatMap() {
   return (
     <div className="space-y-6 animate-in fade-in duration-500 pb-12">
       <div>
-        <h1 className="text-3xl font-bold font-['Tajawal'] text-[#000000]">{t('admin.seat_map.title')}</h1>
-        <p className="text-[#8c8c8c] mt-1">{t('admin.seat_map.subtitle')}</p>
+        <h1 className="text-3xl font-bold font-['Tajawal'] text-foreground">{t('admin.seat_map.title')}</h1>
+        <p className="text-muted-foreground mt-1">{t('admin.seat_map.subtitle')}</p>
       </div>
 
-      <div className="bg-white p-4 rounded-xl border border-[#e8e8e8]">
+      <div className="bg-card p-4 rounded-xl border border-border">
         <label className="block text-sm font-medium mb-2">{t('admin.seat_map.select_event')}</label>
         <select
           value={eventId}
@@ -159,7 +159,7 @@ export function AdminEventSeatMap() {
             setSelectedSeat(null);
             resetCompSelection();
           }}
-          className="w-full max-w-md px-3 py-2 border border-[#e8e8e8] rounded-lg text-sm bg-white"
+          className="w-full max-w-md px-3 py-2 border border-border rounded-lg text-sm bg-card"
         >
           <option value="">{t('admin.seat_map.choose_event')}</option>
           {events.map((ev) => (
@@ -171,7 +171,7 @@ export function AdminEventSeatMap() {
       </div>
 
       {!eventId && (
-        <p className="text-sm text-[#8c8c8c]">{t('admin.seat_map.pick_event_hint')}</p>
+        <p className="text-sm text-muted-foreground">{t('admin.seat_map.pick_event_hint')}</p>
       )}
 
       {eventId && noVenueTemplate && (
@@ -197,13 +197,13 @@ export function AdminEventSeatMap() {
       )}
 
       {eventId && (isPending || isFetching) && !seatMap && !isError && (
-        <p className="text-sm text-[#8c8c8c]">{t('admin.common.loading')}</p>
+        <p className="text-sm text-muted-foreground">{t('admin.common.loading')}</p>
       )}
 
       {seatMap && (
         <>
           {isSuperAdmin && (
-            <div className="flex flex-wrap items-center gap-3 bg-white border border-[#e8e8e8] rounded-xl p-4">
+            <div className="flex flex-wrap items-center gap-3 bg-card border border-border rounded-xl p-4">
               <label className="flex items-center gap-2 text-sm font-medium cursor-pointer">
                 <input
                   type="checkbox"
@@ -222,21 +222,21 @@ export function AdminEventSeatMap() {
               </label>
               {compSelectMode && (
                 <>
-                  <span className="text-sm text-[#8c8c8c]">
+                  <span className="text-sm text-muted-foreground">
                     {t('admin.comp.selected_count').replace('{{count}}', String(selectedSeatIds.size))}
                   </span>
                   <button
                     type="button"
                     onClick={openCompModal}
                     disabled={selectedSeatIds.size < 1}
-                    className="px-4 py-2 bg-black text-white text-sm font-medium rounded-lg disabled:opacity-40"
+                    className="px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-lg disabled:opacity-40"
                   >
                     {t('admin.comp.issue_button')}
                   </button>
                   <button
                     type="button"
                     onClick={resetCompSelection}
-                    className="text-sm text-[#8c8c8c] underline"
+                    className="text-sm text-muted-foreground underline"
                   >
                     {t('admin.comp.cancel_selection')}
                   </button>
@@ -251,7 +251,7 @@ export function AdminEventSeatMap() {
                 available: 'bg-green-100 text-green-900',
                 locked: 'bg-amber-100 text-amber-900',
                 booked: 'bg-red-100 text-red-900',
-                total: 'bg-[#e8e8e8] text-[#000000]',
+                total: 'bg-muted text-foreground',
               };
               return (
                 <div key={key} className={`rounded-xl p-4 ${colors[key]}`}>
@@ -267,7 +267,7 @@ export function AdminEventSeatMap() {
               type="button"
               onClick={() => setTierFilter(null)}
               className={`px-3 py-1.5 rounded-full text-xs font-medium border ${
-                tierFilter === null ? 'bg-black text-white border-black' : 'bg-white border-[#e8e8e8]'
+                tierFilter === null ? 'bg-primary text-primary-foreground border-black' : 'bg-card border-border'
               }`}
             >
               {t('admin.seat_map.all_tiers')}
@@ -278,7 +278,7 @@ export function AdminEventSeatMap() {
                 type="button"
                 onClick={() => setTierFilter(tier.id)}
                 className={`px-3 py-1.5 rounded-full text-xs font-medium border ${
-                  tierFilter === tier.id ? 'bg-black text-white border-black' : 'bg-white border-[#e8e8e8]'
+                  tierFilter === tier.id ? 'bg-primary text-primary-foreground border-black' : 'bg-card border-border'
                 }`}
               >
                 {tier.name}
@@ -298,30 +298,30 @@ export function AdminEventSeatMap() {
                 onSeatToggle={handleSeatToggle}
               />
             </div>
-            <div className="bg-white rounded-xl border border-[#e8e8e8] p-4 min-h-[200px]">
+            <div className="bg-card rounded-xl border border-border p-4 min-h-[200px]">
               <h3 className="font-bold text-sm mb-3">{t('admin.seat_map.seat_details')}</h3>
               {compSelectMode ? (
-                <p className="text-sm text-[#8c8c8c]">{t('admin.comp.select_mode_hint')}</p>
+                <p className="text-sm text-muted-foreground">{t('admin.comp.select_mode_hint')}</p>
               ) : !selectedSeat ? (
-                <p className="text-sm text-[#8c8c8c]">{t('admin.seat_map.click_seat')}</p>
+                <p className="text-sm text-muted-foreground">{t('admin.seat_map.click_seat')}</p>
               ) : selectedSeat.reservation ? (
                 <dl className="space-y-2 text-sm">
                   <div>
-                    <dt className="text-[#8c8c8c]">{t('admin.seat_map.seat_label')}</dt>
+                    <dt className="text-muted-foreground">{t('admin.seat_map.seat_label')}</dt>
                     <dd className="font-medium">{selectedSeat.seat_number}</dd>
                   </div>
                   <div>
-                    <dt className="text-[#8c8c8c]">{t('admin.seat_map.status')}</dt>
+                    <dt className="text-muted-foreground">{t('admin.seat_map.status')}</dt>
                     <dd className="font-medium capitalize">{selectedSeat.reservation.payment_status}</dd>
                   </div>
                   <div>
-                    <dt className="text-[#8c8c8c]">{t('admin.seat_map.reference')}</dt>
+                    <dt className="text-muted-foreground">{t('admin.seat_map.reference')}</dt>
                     <dd className="font-medium">
                       {selectedSeat.reservation.reference_number ?? selectedSeat.reservation.id.slice(0, 8)}
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-[#8c8c8c]">{t('admin.seat_map.guest')}</dt>
+                    <dt className="text-muted-foreground">{t('admin.seat_map.guest')}</dt>
                     <dd className="font-medium">
                       {[selectedSeat.reservation.user.first_name, selectedSeat.reservation.user.last_name]
                         .filter(Boolean)
@@ -329,18 +329,18 @@ export function AdminEventSeatMap() {
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-[#8c8c8c]">{t('admin.seat_map.email')}</dt>
+                    <dt className="text-muted-foreground">{t('admin.seat_map.email')}</dt>
                     <dd className="font-medium break-all">{selectedSeat.reservation.user.email || '—'}</dd>
                   </div>
                   <div>
-                    <dt className="text-[#8c8c8c]">{t('admin.seat_map.phone')}</dt>
+                    <dt className="text-muted-foreground">{t('admin.seat_map.phone')}</dt>
                     <dd className="font-medium">{selectedSeat.reservation.user.phone || '—'}</dd>
                   </div>
                 </dl>
               ) : (
                 <dl className="space-y-2 text-sm">
                   <div>
-                    <dt className="text-[#8c8c8c]">{t('admin.seat_map.seat_label')}</dt>
+                    <dt className="text-muted-foreground">{t('admin.seat_map.seat_label')}</dt>
                     <dd className="font-medium">{selectedSeat.seat_number}</dd>
                   </div>
                   <p className="text-green-700 font-medium">{t('admin.seat_map.available')}</p>
@@ -352,21 +352,21 @@ export function AdminEventSeatMap() {
       )}
 
       {compModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between p-4 border-b border-[#e8e8e8]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-secondary/50">
+          <div className="bg-card rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between p-4 border-b border-border">
               <h2 className="text-lg font-bold font-['Tajawal']">{t('admin.comp.modal_title')}</h2>
               <button
                 type="button"
                 onClick={() => setCompModalOpen(false)}
-                className="p-1 rounded-full hover:bg-[#e8e8e8]"
+                className="p-1 rounded-full hover:bg-muted"
                 aria-label={t('admin.common.close')}
               >
                 <X size={20} />
               </button>
             </div>
             <form onSubmit={submitComp} className="p-4 space-y-4">
-              <p className="text-sm text-[#8c8c8c]">
+              <p className="text-sm text-muted-foreground">
                 {t('admin.comp.modal_desc').replace('{{count}}', String(selectedSeatIds.size))}
               </p>
               <div>
@@ -376,7 +376,7 @@ export function AdminEventSeatMap() {
                   required
                   value={compEmail}
                   onChange={(e) => setCompEmail(e.target.value)}
-                  className="w-full px-3 py-2 border border-[#e8e8e8] rounded-lg text-sm"
+                  className="w-full px-3 py-2 border border-border rounded-lg text-sm"
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -387,7 +387,7 @@ export function AdminEventSeatMap() {
                     required
                     value={compFirstName}
                     onChange={(e) => setCompFirstName(e.target.value)}
-                    className="w-full px-3 py-2 border border-[#e8e8e8] rounded-lg text-sm"
+                    className="w-full px-3 py-2 border border-border rounded-lg text-sm"
                   />
                 </div>
                 <div>
@@ -397,7 +397,7 @@ export function AdminEventSeatMap() {
                     required
                     value={compLastName}
                     onChange={(e) => setCompLastName(e.target.value)}
-                    className="w-full px-3 py-2 border border-[#e8e8e8] rounded-lg text-sm"
+                    className="w-full px-3 py-2 border border-border rounded-lg text-sm"
                   />
                 </div>
               </div>
@@ -416,7 +416,7 @@ export function AdminEventSeatMap() {
                   value={compNote}
                   onChange={(e) => setCompNote(e.target.value)}
                   rows={2}
-                  className="w-full px-3 py-2 border border-[#e8e8e8] rounded-lg text-sm resize-none"
+                  className="w-full px-3 py-2 border border-border rounded-lg text-sm resize-none"
                   placeholder={t('admin.comp.note_placeholder')}
                 />
               </div>
@@ -432,7 +432,7 @@ export function AdminEventSeatMap() {
               <button
                 type="submit"
                 disabled={compSubmitting}
-                className="w-full py-3 bg-black text-white font-medium rounded-lg flex items-center justify-center gap-2 disabled:opacity-60"
+                className="w-full py-3 bg-primary text-primary-foreground font-medium rounded-lg flex items-center justify-center gap-2 disabled:opacity-60"
               >
                 {compSubmitting && <Loader2 size={18} className="animate-spin" />}
                 {t('admin.comp.submit')}

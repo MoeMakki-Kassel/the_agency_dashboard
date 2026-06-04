@@ -123,7 +123,7 @@ export function Login() {
       </div>
 
       {/* ── Right panel (form) ─────────────────────────────────── */}
-      <div className="flex-1 bg-[#f2f2f2] flex items-center justify-center p-6 lg:p-12">
+      <div className="flex-1 bg-muted flex items-center justify-center p-6 lg:p-12">
         <div className="w-full max-w-[360px]">
           {/* Mobile logo */}
           <div className="lg:hidden mb-8">
@@ -138,22 +138,22 @@ export function Login() {
             /* ── Step 1: Email ── */
             <div>
               <div className="mb-8">
-                <h2 className="text-[26px] font-bold text-black tracking-tight mb-1">
+                <h2 className="text-[26px] font-bold text-foreground tracking-tight mb-1">
                   Welcome back
                 </h2>
-                <p className="text-sm text-[#8c8c8c]">
+                <p className="text-sm text-muted-foreground">
                   Sign in to the admin dashboard
                 </p>
               </div>
 
               <form onSubmit={handleSendCode} className="space-y-3">
                 <div>
-                  <label className="block text-xs font-semibold text-black uppercase tracking-wide mb-2">
+                  <label className="block text-xs font-semibold text-foreground uppercase tracking-wide mb-2">
                     Email address
                   </label>
                   <div className="relative">
                     <Mail
-                      className="absolute start-3.5 top-1/2 -translate-y-1/2 text-[#8c8c8c]"
+                      className="absolute start-3.5 top-1/2 -translate-y-1/2 text-muted-foreground"
                       size={15}
                     />
                     <input
@@ -162,7 +162,7 @@ export function Login() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       autoFocus
-                      className="w-full ps-10 pe-4 py-3 bg-white rounded-xl border border-[#e0e0e0] text-sm text-black placeholder-[#b0b0b0] focus:outline-none focus:ring-2 focus:ring-black/15 focus:border-black transition-all shadow-sm"
+                      className="w-full ps-10 pe-4 py-3 bg-input rounded-xl border border-border text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary transition-all shadow-sm"
                       placeholder="you@example.com"
                     />
                   </div>
@@ -189,26 +189,26 @@ export function Login() {
             <div>
               <button
                 onClick={() => { setStep('email'); setOtp(''); }}
-                className="flex items-center gap-1.5 text-sm text-[#8c8c8c] hover:text-black transition-colors mb-8 -ms-0.5"
+                className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8 -ms-0.5"
               >
                 <ArrowLeft size={15} className="rtl:rotate-180" />
                 Back
               </button>
 
               <div className="mb-8">
-                <h2 className="text-[26px] font-bold text-black tracking-tight mb-1">
+                <h2 className="text-[26px] font-bold text-foreground tracking-tight mb-1">
                   Check your email
                 </h2>
-                <p className="text-sm text-[#8c8c8c]">
+                <p className="text-sm text-muted-foreground">
                   We sent a 6-digit code to{' '}
-                  <span className="font-semibold text-black">{email.trim().toLowerCase()}</span>.
+                  <span className="font-semibold text-foreground">{email.trim().toLowerCase()}</span>.
                   Delivery can take up to a minute — check spam if you do not see it.
                 </p>
               </div>
 
               <form onSubmit={handleVerify} className="space-y-3">
                 <div>
-                  <label className="block text-xs font-semibold text-black uppercase tracking-wide mb-2">
+                  <label className="block text-xs font-semibold text-foreground uppercase tracking-wide mb-2">
                     Verification code
                   </label>
                   <input
@@ -219,7 +219,7 @@ export function Login() {
                     required
                     autoFocus
                     maxLength={8}
-                    className="w-full px-4 py-3.5 bg-white rounded-xl border border-[#e0e0e0] text-center text-[28px] font-mono tracking-[0.4em] text-black placeholder-[#d0d0d0] focus:outline-none focus:ring-2 focus:ring-black/15 focus:border-black transition-all shadow-sm"
+                    className="w-full px-4 py-3.5 bg-input rounded-xl border border-border text-center text-[28px] font-mono tracking-[0.4em] text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/15 focus:border-primary transition-all shadow-sm"
                     placeholder="······"
                   />
                 </div>
@@ -232,14 +232,14 @@ export function Login() {
                     className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 transition-all ${
                       rememberMe
                         ? 'bg-primary border-primary'
-                        : 'bg-white border-[#d0d0d0] group-hover:border-[#8c8c8c]'
+                        : 'bg-input border-border group-hover:border-foreground'
                     }`}
                   >
                     {rememberMe && <Check size={11} className="text-white" strokeWidth={3} />}
                   </button>
                   <div className="leading-tight">
-                    <span className="text-sm font-medium text-black">Remember me</span>
-                    <span className="block text-xs text-[#8c8c8c] mt-0.5">
+                    <span className="text-sm font-medium text-foreground">Remember me</span>
+                    <span className="block text-xs text-muted-foreground mt-0.5">
                       Stay signed in for 4 hours
                     </span>
                   </div>
@@ -258,13 +258,13 @@ export function Login() {
                 </button>
               </form>
 
-              <p className="text-xs text-[#8c8c8c] text-center mt-5">
+              <p className="text-xs text-muted-foreground text-center mt-5">
                 Didn't receive a code?{' '}
                 <button
                   type="button"
                   onClick={handleResend}
                   disabled={resendSeconds > 0}
-                  className="text-black font-semibold hover:underline disabled:opacity-40 disabled:no-underline"
+                  className="text-foreground font-semibold hover:underline disabled:opacity-40 disabled:no-underline"
                 >
                   {resendSeconds > 0 ? `Resend in ${resendSeconds}s` : 'Resend'}
                 </button>

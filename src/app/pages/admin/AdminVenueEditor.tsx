@@ -236,7 +236,7 @@ export function AdminVenueEditor() {
 
   if (waitingForAuth) {
     return (
-      <div className="py-24 text-center text-[#8c8c8c] text-sm">Loading venue editor…</div>
+      <div className="py-24 text-center text-muted-foreground text-sm">Loading venue editor…</div>
     );
   }
 
@@ -247,11 +247,11 @@ export function AdminVenueEditor() {
         <button
           type="button"
           onClick={() => refetch()}
-          className="text-sm font-medium underline text-[#525252]"
+          className="text-sm font-medium underline text-muted-foreground"
         >
           Try again
         </button>
-        <Link to="/venues" className="block text-sm text-[#8c8c8c] hover:text-black">
+        <Link to="/venues" className="block text-sm text-muted-foreground hover:text-foreground">
           ← Back to venues
         </Link>
       </div>
@@ -260,18 +260,18 @@ export function AdminVenueEditor() {
 
   if (waitingForTemplate || !editorLayout || !template) {
     return (
-      <div className="py-24 text-center text-[#8c8c8c] text-sm">Loading venue editor…</div>
+      <div className="py-24 text-center text-muted-foreground text-sm">Loading venue editor…</div>
     );
   }
 
   return (
     <div className="space-y-6 pb-24">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-xl border border-[#e8e8e8] sticky top-0 z-10">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-card p-6 rounded-xl border border-border sticky top-0 z-10">
         <div className="flex items-center gap-4">
           <Link
             to="/venues"
             onClick={handleBackClick}
-            className="w-10 h-10 rounded-full border border-[#e8e8e8] flex items-center justify-center text-[#8c8c8c] hover:text-black"
+            className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft size={20} />
           </Link>
@@ -279,9 +279,9 @@ export function AdminVenueEditor() {
             <input
               value={name}
               onChange={(e) => handleNameChange(e.target.value)}
-              className="text-xl font-bold font-['Tajawal'] bg-transparent border-b border-transparent focus:border-[#e8e8e8] outline-none"
+              className="text-xl font-bold font-['Tajawal'] bg-transparent border-b border-transparent focus:border-border outline-none"
             />
-            <p className="text-xs text-[#8c8c8c] flex flex-wrap items-center gap-2">
+            <p className="text-xs text-muted-foreground flex flex-wrap items-center gap-2">
               <span>
                 {template.slug} · {editorLayout.seats.length} seats on map
               </span>
@@ -299,7 +299,7 @@ export function AdminVenueEditor() {
             onClick={handleUndo}
             disabled={!canUndo}
             title="Undo last edit (one step)"
-            className="inline-flex items-center gap-2 px-3 py-2 border border-[#e8e8e8] rounded-lg text-sm font-medium hover:bg-[#fafafa] disabled:opacity-40"
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted disabled:opacity-40"
           >
             <Undo2 size={16} />
             Undo
@@ -309,14 +309,14 @@ export function AdminVenueEditor() {
             onClick={handleRevertSaved}
             disabled={!isDirty && !canUndo}
             title="Restore last saved version from server"
-            className="inline-flex items-center gap-2 px-3 py-2 border border-[#e8e8e8] rounded-lg text-sm font-medium hover:bg-[#fafafa] disabled:opacity-40"
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted disabled:opacity-40"
           >
             <RotateCcw size={16} />
             Revert to saved
           </button>
           <Link
             to={`/venues/${id}/setup`}
-            className="inline-flex items-center gap-2 px-4 py-2 border border-[#e8e8e8] rounded-lg text-sm font-medium hover:bg-[#fafafa]"
+            className="inline-flex items-center gap-2 px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted"
           >
             Sections & tiers
           </Link>
@@ -324,7 +324,7 @@ export function AdminVenueEditor() {
             type="button"
             onClick={() => fileRef.current?.click()}
             disabled={uploadMutation.isPending}
-            className="inline-flex items-center gap-2 px-4 py-2 border border-[#e8e8e8] rounded-lg text-sm font-medium hover:bg-[#fafafa]"
+            className="inline-flex items-center gap-2 px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-muted"
           >
             <Upload size={16} />
             Upload floor plan
@@ -344,7 +344,7 @@ export function AdminVenueEditor() {
             type="button"
             onClick={handleSave}
             disabled={saveMutation.isPending || !isDirty}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-black text-white rounded-lg text-sm font-medium hover:bg-accent disabled:opacity-60"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-accent disabled:opacity-60"
           >
             <Save size={16} />
             {saveMutation.isPending ? 'Saving…' : 'Save map'}

@@ -173,14 +173,14 @@ export function AdminPromoCodes() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold font-['Tajawal'] text-ink-black">{t('admin.promo_codes.title')}</h1>
-          <p className="text-[#8c8c8c] text-sm mt-1">{t('admin.promo_codes.subtitle')}</p>
+          <p className="text-muted-foreground text-sm mt-1">{t('admin.promo_codes.subtitle')}</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <AdminRefreshButton onClick={() => void refetch()} isFetching={isFetching} />
           <button
             type="button"
             onClick={() => handleOpenModal()}
-            className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg text-sm font-medium hover:bg-accent"
+            className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-accent"
           >
             <Plus className="w-4 h-4" />
             {t('admin.promo_codes.add_button')}
@@ -188,20 +188,20 @@ export function AdminPromoCodes() {
         </div>
       </div>
 
-      <div className="bg-white p-4 rounded-xl border border-warm-gray/50 shadow-sm">
+      <div className="bg-card p-4 rounded-xl border border-warm-gray/50 shadow-sm">
         <div className="relative">
-          <Search className="absolute top-1/2 -translate-y-1/2 text-[#8c8c8c] w-5 h-5 start-3" />
+          <Search className="absolute top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 start-3" />
           <input
             type="text"
             placeholder={t('admin.promo_codes.search_ph')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full py-2 ps-10 pe-4 rounded-lg border border-warm-gray/50 focus:outline-none focus:ring-2 focus:ring-black/50 text-sm"
+            className="w-full py-2 ps-10 pe-4 rounded-lg border border-warm-gray/50 focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
           />
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-warm-gray/50 shadow-sm overflow-hidden">
+      <div className="bg-card rounded-xl border border-warm-gray/50 shadow-sm overflow-hidden">
         <div className="admin-table-wrap min-w-0">
           <table className="w-full min-w-[56rem] table-fixed border-collapse admin-table text-sm">
             <colgroup>
@@ -214,7 +214,7 @@ export function AdminPromoCodes() {
               <col style={{ width: '14%' }} />
             </colgroup>
             <thead>
-              <tr className="bg-[#e8e8e8] border-b border-warm-gray/50 text-xs uppercase tracking-wider font-medium text-[#8c8c8c]">
+              <tr className="bg-muted border-b border-warm-gray/50 text-xs uppercase tracking-wider font-medium text-muted-foreground">
                 <th className="py-4 px-6 text-start whitespace-nowrap">{t('admin.promo_codes.col_code')}</th>
                 <th className="py-4 px-6 text-start whitespace-nowrap">{t('admin.promo_codes.col_discount')}</th>
                 <th className="py-4 px-6 text-start whitespace-nowrap">{t('admin.promo_codes.col_event')}</th>
@@ -227,14 +227,14 @@ export function AdminPromoCodes() {
             <tbody className="divide-y divide-warm-gray/50">
             {isLoading && (
               <tr>
-                <td colSpan={7} className="py-8 px-6 text-center text-[#8c8c8c]">
+                <td colSpan={7} className="py-8 px-6 text-center text-muted-foreground">
                   {t('admin.common.loading')}
                 </td>
               </tr>
             )}
             {!isLoading &&
               promos.map((row) => (
-                <tr key={row.id} className="hover:bg-[#fafafa]">
+                <tr key={row.id} className="hover:bg-muted">
                   <td className="py-4 px-6 font-mono font-semibold truncate">{row.code}</td>
                   <td className="py-4 px-6 whitespace-nowrap">{formatDiscount(row, t)}</td>
                   <td className="py-4 px-6 truncate" title={row.events?.title ?? t('admin.promo_codes.all_events')}>
@@ -249,7 +249,7 @@ export function AdminPromoCodes() {
                       className={
                         row.active
                           ? 'inline-block text-green-700 bg-green-50 px-2 py-0.5 rounded'
-                          : 'inline-block text-[#8c8c8c] bg-[#f5f5f5] px-2 py-0.5 rounded'
+                          : 'inline-block text-muted-foreground bg-muted px-2 py-0.5 rounded'
                       }
                     >
                       {row.active ? t('admin.promo_codes.active_yes') : t('admin.promo_codes.active_no')}
@@ -260,7 +260,7 @@ export function AdminPromoCodes() {
                       <button
                         type="button"
                         onClick={() => handleOpenModal(row)}
-                        className="p-2 hover:bg-[#e8e8e8] rounded-lg"
+                        className="p-2 hover:bg-muted rounded-lg"
                         title={t('admin.common.edit')}
                       >
                         <Edit className="w-4 h-4" />
@@ -279,7 +279,7 @@ export function AdminPromoCodes() {
               ))}
             {!isLoading && promos.length === 0 && (
               <tr>
-                <td colSpan={7} className="py-12 px-6 text-center text-[#8c8c8c]">
+                <td colSpan={7} className="py-12 px-6 text-center text-muted-foreground">
                   <Tag className="w-10 h-10 mx-auto mb-2 opacity-40" />
                   {t('admin.promo_codes.none')}
                 </td>
@@ -291,13 +291,13 @@ export function AdminPromoCodes() {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-[#e8e8e8] flex justify-between items-center sticky top-0 bg-white">
+        <div className="fixed inset-0 bg-secondary/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-card rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-border flex justify-between items-center sticky top-0 bg-card">
               <h3 className="font-bold text-xl font-['Tajawal']">
                 {editing ? t('admin.promo_codes.edit') : t('admin.promo_codes.add_new')}
               </h3>
-              <button type="button" onClick={handleCloseModal} className="text-[#8c8c8c] hover:text-black">
+              <button type="button" onClick={handleCloseModal} className="text-muted-foreground hover:text-foreground">
                 <X size={24} />
               </button>
             </div>
@@ -308,7 +308,7 @@ export function AdminPromoCodes() {
                   type="text"
                   value={form.code}
                   onChange={(e) => setForm({ ...form, code: e.target.value.toUpperCase() })}
-                  className="w-full border border-[#e8e8e8] rounded-lg py-3 px-4 font-mono uppercase"
+                  className="w-full border border-border rounded-lg py-3 px-4 font-mono uppercase"
                   placeholder="SUMMER20"
                 />
               </div>
@@ -347,7 +347,7 @@ export function AdminPromoCodes() {
                   step={0.01}
                   value={form.discount_value}
                   onChange={(e) => setForm({ ...form, discount_value: e.target.value })}
-                  className="w-full border border-[#e8e8e8] rounded-lg py-3 px-4"
+                  className="w-full border border-border rounded-lg py-3 px-4"
                 />
               </div>
               <div>
@@ -358,7 +358,7 @@ export function AdminPromoCodes() {
                   value={form.usage_limit}
                   onChange={(e) => setForm({ ...form, usage_limit: e.target.value })}
                   placeholder={t('admin.promo_codes.usage_limit_ph')}
-                  className="w-full border border-[#e8e8e8] rounded-lg py-3 px-4"
+                  className="w-full border border-border rounded-lg py-3 px-4"
                 />
               </div>
               <div>
@@ -366,7 +366,7 @@ export function AdminPromoCodes() {
                 <select
                   value={form.event_id}
                   onChange={(e) => setForm({ ...form, event_id: e.target.value })}
-                  className="w-full border border-[#e8e8e8] rounded-lg py-3 px-4"
+                  className="w-full border border-border rounded-lg py-3 px-4"
                   disabled={eventsLoading}
                 >
                   <option value="">{t('admin.promo_codes.all_events')}</option>
@@ -396,7 +396,7 @@ export function AdminPromoCodes() {
                     type="datetime-local"
                     value={form.starts_at}
                     onChange={(e) => setForm({ ...form, starts_at: e.target.value })}
-                    className="w-full border border-[#e8e8e8] rounded-lg py-3 px-4"
+                    className="w-full border border-border rounded-lg py-3 px-4"
                   />
                 </div>
                 <div>
@@ -405,7 +405,7 @@ export function AdminPromoCodes() {
                     type="datetime-local"
                     value={form.expires_at}
                     onChange={(e) => setForm({ ...form, expires_at: e.target.value })}
-                    className="w-full border border-[#e8e8e8] rounded-lg py-3 px-4"
+                    className="w-full border border-border rounded-lg py-3 px-4"
                   />
                 </div>
               </div>
@@ -422,7 +422,7 @@ export function AdminPromoCodes() {
                 type="button"
                 onClick={handleSave}
                 disabled={isSaving}
-                className="w-full py-3 bg-black text-white rounded-lg font-semibold hover:bg-accent disabled:opacity-70"
+                className="w-full py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-accent disabled:opacity-70"
               >
                 {isSaving ? t('admin.sponsors.saving') : t('admin.common.save')}
               </button>

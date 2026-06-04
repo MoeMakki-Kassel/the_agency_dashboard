@@ -424,19 +424,19 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
 
   return (
     <div className="flex flex-col lg:flex-row gap-4">
-      <div className="lg:w-64 shrink-0 space-y-4 bg-white border border-[#e8e8e8] rounded-xl p-4">
+      <div className="lg:w-64 shrink-0 space-y-4 bg-card text-card-foreground border border-border rounded-xl p-4">
         <div>
-          <label className="block text-xs font-medium text-[#525252] mb-1">Tool</label>
+          <label className="block text-xs font-medium text-muted-foreground mb-1">Tool</label>
           <select
             value={editorMode}
             onChange={(e) => setEditorMode(e.target.value as EditorMode)}
-            className="w-full border border-[#e8e8e8] rounded-lg px-2 py-2 text-sm"
+            className="w-full border border-border rounded-lg px-2 py-2 text-sm"
           >
             <option value="place">Place seats (click map)</option>
             <option value="move_section">Move whole section</option>
             <option value="move_row">Move row only</option>
           </select>
-          <p className="text-xs text-[#8c8c8c] mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             {editorMode === 'place'
               ? 'Click empty map to add. Drag one seat to nudge it.'
               : editorMode === 'move_section'
@@ -445,12 +445,12 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
           </p>
         </div>
         <div>
-          <label className="block text-xs font-medium text-[#525252] mb-1">Nudge (5px)</label>
+          <label className="block text-xs font-medium text-muted-foreground mb-1">Nudge (5px)</label>
           <div className="grid grid-cols-3 gap-1 max-w-[132px]">
             <span />
             <button
               type="button"
-              className="py-1.5 text-sm border rounded-lg hover:bg-[#fafafa]"
+              className="py-1.5 text-sm border rounded-lg hover:bg-muted"
               onClick={() => nudgeSeats(0, -NUDGE_STEP, editorMode === 'move_row' ? 'row' : 'section')}
             >
               ↑
@@ -458,17 +458,17 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
             <span />
             <button
               type="button"
-              className="py-1.5 text-sm border rounded-lg hover:bg-[#fafafa]"
+              className="py-1.5 text-sm border rounded-lg hover:bg-muted"
               onClick={() => nudgeSeats(-NUDGE_STEP, 0, editorMode === 'move_row' ? 'row' : 'section')}
             >
               ←
             </button>
-            <span className="text-[10px] text-center self-center text-[#8c8c8c]">
+            <span className="text-[10px] text-center self-center text-muted-foreground">
               {editorMode === 'move_row' ? 'row' : 'sec'}
             </span>
             <button
               type="button"
-              className="py-1.5 text-sm border rounded-lg hover:bg-[#fafafa]"
+              className="py-1.5 text-sm border rounded-lg hover:bg-muted"
               onClick={() => nudgeSeats(NUDGE_STEP, 0, editorMode === 'move_row' ? 'row' : 'section')}
             >
               →
@@ -476,7 +476,7 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
             <span />
             <button
               type="button"
-              className="py-1.5 text-sm border rounded-lg hover:bg-[#fafafa]"
+              className="py-1.5 text-sm border rounded-lg hover:bg-muted"
               onClick={() => nudgeSeats(0, NUDGE_STEP, editorMode === 'move_row' ? 'row' : 'section')}
             >
               ↓
@@ -485,7 +485,7 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
           </div>
         </div>
         <div>
-          <label className="block text-xs font-medium text-[#525252] mb-1">Section</label>
+          <label className="block text-xs font-medium text-muted-foreground mb-1">Section</label>
           {mapSections.length === 0 ? (
             <p className="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-2 py-2">
               No assigned sections. Open <strong>Sections & tiers</strong> and add seated areas first.
@@ -494,7 +494,7 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
             <select
               value={sectionKey}
               onChange={(e) => setSectionKey(e.target.value)}
-              className="w-full border border-[#e8e8e8] rounded-lg px-2 py-2 text-sm"
+              className="w-full border border-border rounded-lg px-2 py-2 text-sm"
             >
               {mapSections.map((t) => (
                 <option key={t.key} value={t.key}>
@@ -505,30 +505,30 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
           )}
         </div>
         <div>
-          <label className="block text-xs font-medium text-[#525252] mb-1">Row</label>
+          <label className="block text-xs font-medium text-muted-foreground mb-1">Row</label>
           <input
             value={row}
             onChange={(e) => setRow(e.target.value.toUpperCase())}
-            className="w-full border border-[#e8e8e8] rounded-lg px-2 py-2 text-sm"
+            className="w-full border border-border rounded-lg px-2 py-2 text-sm"
             maxLength={2}
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-[#525252] mb-1">Start seat #</label>
+          <label className="block text-xs font-medium text-muted-foreground mb-1">Start seat #</label>
           <input
             type="number"
             min={1}
             value={seatNumberStart}
             onChange={(e) => setSeatNumberStart(Math.max(1, parseInt(e.target.value, 10) || 1))}
-            className="w-full border border-[#e8e8e8] rounded-lg px-2 py-2 text-sm"
+            className="w-full border border-border rounded-lg px-2 py-2 text-sm"
           />
-          <p className="text-xs text-[#8c8c8c] mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             First click in this row uses this number (e.g. 3 → 3, 4, 5…). Then auto-increment.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <label className="block text-xs text-[#8c8c8c]">Width</label>
+            <label className="block text-xs text-muted-foreground">Width</label>
             <input
               type="number"
               value={seatW}
@@ -537,7 +537,7 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
             />
           </div>
           <div>
-            <label className="block text-xs text-[#8c8c8c]">Height</label>
+            <label className="block text-xs text-muted-foreground">Height</label>
             <input
               type="number"
               value={seatH}
@@ -547,7 +547,7 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
           </div>
         </div>
         <div>
-          <label className="block text-xs font-medium text-[#525252] mb-1">Shape</label>
+          <label className="block text-xs font-medium text-muted-foreground mb-1">Shape</label>
           <select
             value={shape}
             onChange={(e) => setShape(e.target.value as 'rect' | 'circle')}
@@ -558,13 +558,13 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
           </select>
         </div>
         {editorMode === 'place' && (
-          <p className="text-xs text-[#8c8c8c]">Click the map to place a seat. Drag seats to adjust.</p>
+          <p className="text-xs text-muted-foreground">Click the map to place a seat. Drag seats to adjust.</p>
         )}
         <button
           type="button"
           onClick={duplicateRow}
           disabled={editorMode !== 'place'}
-          className="w-full py-2 text-sm border border-[#e8e8e8] rounded-lg hover:bg-[#fafafa] disabled:opacity-40"
+          className="w-full py-2 text-sm border border-border rounded-lg hover:bg-muted disabled:opacity-40"
         >
           Duplicate row (next row)
         </button>
@@ -584,33 +584,33 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
           Delete entire section
         </button>
         {selected && (
-          <p className="text-xs text-[#525252]">
+          <p className="text-xs text-muted-foreground">
             Selected: {selected.section_key} {selected.row}-{selected.number}
           </p>
         )}
         <div className="border-t pt-3 space-y-1">
-          <p className="text-xs font-medium text-[#000000]">Seat counts</p>
+          <p className="text-xs font-medium text-foreground">Seat counts</p>
           {tierConfig
             .filter((t) => t.selection_mode !== 'general_admission')
             .map((t) => (
-              <p key={t.key} className="text-xs text-[#8c8c8c]">
+              <p key={t.key} className="text-xs text-muted-foreground">
                 {t.name}: {countsBySection[t.key] ?? 0}
               </p>
             ))}
-          <p className="text-xs text-[#8c8c8c]">Total map seats: {seats.length}</p>
+          <p className="text-xs text-muted-foreground">Total map seats: {seats.length}</p>
         </div>
       </div>
 
       <div className="flex-1 flex flex-col gap-2 min-h-[480px]">
         <div className="flex flex-wrap items-center justify-between gap-2 px-1">
-          <p className="text-xs text-[#8c8c8c]">
+          <p className="text-xs text-muted-foreground">
             Scroll to zoom · hold <kbd className="px-1 py-0.5 bg-[#eee] rounded text-[10px]">Space</kbd> and drag to pan
           </p>
           <div className="flex items-center gap-1">
             <button
               type="button"
               onClick={zoomOut}
-              className="p-2 border border-[#e8e8e8] rounded-lg hover:bg-white"
+              className="p-2 border border-border rounded-lg hover:bg-muted"
               aria-label="Zoom out"
             >
               <Minus size={16} />
@@ -618,7 +618,7 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
             <button
               type="button"
               onClick={zoomIn}
-              className="p-2 border border-[#e8e8e8] rounded-lg hover:bg-white"
+              className="p-2 border border-border rounded-lg hover:bg-muted"
               aria-label="Zoom in"
             >
               <Plus size={16} />
@@ -626,14 +626,14 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
             <button
               type="button"
               onClick={fitSection}
-              className="px-2 py-2 text-xs font-medium border border-[#e8e8e8] rounded-lg hover:bg-white"
+              className="px-2 py-2 text-xs font-medium border border-border rounded-lg hover:bg-muted"
             >
               Fit section
             </button>
             <button
               type="button"
               onClick={resetView}
-              className="px-2 py-2 text-xs font-medium border border-[#e8e8e8] rounded-lg hover:bg-white"
+              className="px-2 py-2 text-xs font-medium border border-border rounded-lg hover:bg-muted"
             >
               Reset view
             </button>
@@ -641,7 +641,7 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
         </div>
       <div
         ref={mapWrapRef}
-        className={`flex-1 overflow-auto border border-[#e8e8e8] rounded-xl bg-[#fafafa] p-2 relative ${
+        className={`flex-1 overflow-auto border border-border rounded-xl bg-muted p-2 relative ${
           isPanning ? 'cursor-grab active:cursor-grabbing' : ''
         }`}
         onMouseLeave={hideTooltipNow}
@@ -659,7 +659,7 @@ export function VenueMapEditor({ layout, tierConfig, onLayoutChange }: VenueMapE
             document.body,
           )}
         {!floorPlanUrl && (
-          <p className="text-sm text-[#8c8c8c] p-4">Upload a floor plan image to begin marking seats.</p>
+          <p className="text-sm text-muted-foreground p-4">Upload a floor plan image to begin marking seats.</p>
         )}
         <svg
           ref={svgRef}

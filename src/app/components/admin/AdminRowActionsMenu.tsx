@@ -85,7 +85,7 @@ export function AdminRowActionsMenu({
       <button
         ref={triggerRef}
         type="button"
-        className="inline-flex items-center justify-center text-[#8c8c8c] hover:text-[#000000] p-1 rounded-full hover:bg-[#e8e8e8] transition-colors"
+        className="inline-flex items-center justify-center text-muted-foreground hover:text-foreground p-1 rounded-full hover:bg-muted transition-colors"
         onClick={(e) => {
           e.stopPropagation();
           onOpenChange(!open);
@@ -102,7 +102,7 @@ export function AdminRowActionsMenu({
           <div
             ref={menuRef}
             role="menu"
-            className="fixed z-[200] w-48 bg-white rounded-lg shadow-xl border border-[#e8e8e8] py-1 animate-in fade-in zoom-in-95 duration-200"
+            className="fixed z-[200] w-48 bg-popover text-popover-foreground rounded-lg shadow-xl border border-border py-1 animate-in fade-in zoom-in-95 duration-200"
             style={{ top: coords.top, left: coords.left }}
             onClick={(e) => e.stopPropagation()}
           >

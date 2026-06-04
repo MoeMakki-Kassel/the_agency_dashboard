@@ -18,7 +18,7 @@ export function AdminRefreshButton({
       type="button"
       onClick={onClick}
       disabled={isFetching}
-      className={`px-4 py-2 bg-white border border-[#e8e8e8] rounded-lg text-sm font-medium hover:bg-[#e8e8e8] transition-colors flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed ${className}`}
+      className={`px-4 py-2 bg-card text-card-foreground border border-border rounded-lg text-sm font-medium hover:bg-muted transition-colors flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed ${className}`}
     >
       <RefreshCw className={`w-4 h-4 shrink-0 ${isFetching ? 'animate-spin' : ''}`} />
       {t('admin.common.refresh')}

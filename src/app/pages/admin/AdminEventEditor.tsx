@@ -448,17 +448,17 @@ export function AdminEventEditor() {
   return (
     <div className="space-y-6 animate-in fade-in duration-500 pb-24">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8] sticky top-0 z-10">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-card p-6 rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border sticky top-0 z-10">
         <div className="flex items-center gap-4">
-          <Link to="/events" className="w-10 h-10 rounded-full border border-[#e8e8e8] flex items-center justify-center text-[#8c8c8c] hover:text-[#000000] hover:bg-[#e8e8e8] transition-colors">
+          <Link to="/events" className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors">
             <ArrowLeft size={20} className="rtl:rotate-180" />
           </Link>
           <div>
-            <h1 className="text-2xl font-bold font-['Tajawal'] text-[#000000]">
+            <h1 className="text-2xl font-bold font-['Tajawal'] text-foreground">
               {isEditMode ? 'Edit Event' : 'Create New Event'}
             </h1>
-            <div className="flex items-center text-sm text-[#8c8c8c] mt-1 gap-2">
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#e8e8e8] text-[#8c8c8c] text-xs font-bold uppercase">Draft</span>
+            <div className="flex items-center text-sm text-muted-foreground mt-1 gap-2">
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-muted text-muted-foreground text-xs font-bold uppercase">Draft</span>
               <span>Unsaved changes</span>
             </div>
           </div>
@@ -467,7 +467,7 @@ export function AdminEventEditor() {
           <button
             onClick={handleSave}
             disabled={isSaving}
-            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-black transition-colors flex items-center gap-2 disabled:opacity-60"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-secondary transition-colors flex items-center gap-2 disabled:opacity-60"
           >
             <Save size={16} />
             {isSaving ? 'Saving…' : 'Save Event'}
@@ -485,7 +485,7 @@ export function AdminEventEditor() {
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Sidebar Nav */}
-        <div className="lg:col-span-1 space-y-1 bg-white p-4 rounded-xl border border-[#e8e8e8]">
+        <div className="lg:col-span-1 space-y-1 bg-card p-4 rounded-xl border border-border">
           {TABS.map(tab => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -495,11 +495,11 @@ export function AdminEventEditor() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-start ${
                   isActive
-                    ? "bg-[#e8e8e8] text-[#000000] font-medium"
-                    : "text-[#8c8c8c] hover:bg-[#e8e8e8]/50 hover:text-[#000000]"
+                    ? "bg-muted text-foreground font-medium"
+                    : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                 }`}
               >
-                <Icon size={18} className={isActive ? "text-[#000000]" : "text-[#8c8c8c]"} />
+                <Icon size={18} className={isActive ? "text-foreground" : "text-muted-foreground"} />
                 {tab.label}
               </button>
             );
@@ -508,9 +508,9 @@ export function AdminEventEditor() {
 
         {/* Editor Area */}
         <div className="lg:col-span-3">
-          <div className="bg-white rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-[#e8e8e8] overflow-hidden">
-            <div className="p-6 border-b border-[#e8e8e8]">
-              <h2 className="text-xl font-bold font-['Tajawal'] text-[#000000]">
+          <div className="bg-card rounded-xl shadow-[0_8px_24px_rgba(20,14,8,0.04)] border border-border overflow-hidden">
+            <div className="p-6 border-b border-border">
+              <h2 className="text-xl font-bold font-['Tajawal'] text-foreground">
                 {TABS.find(t => t.id === activeTab)?.label}
               </h2>
             </div>
@@ -519,69 +519,69 @@ export function AdminEventEditor() {
               {activeTab === 'basic' && (
                 <>
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Event Title <span className="text-[#525252]">*</span></label>
+                    <label className="block text-sm font-medium text-foreground">Event Title <span className="text-muted-foreground">*</span></label>
                     <input
                       type="text"
                       value={name}
                       onChange={e => setName(e.target.value)}
                       placeholder="e.g. Desert Soundscapes"
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     />
                   </div>
 
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">URL slug</label>
+                    <label className="block text-sm font-medium text-foreground">URL slug</label>
                     <input
                       type="text"
                       value={slug}
                       onChange={e => setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''))}
                       placeholder="auto from title if left empty on create"
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all font-mono text-sm"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-mono text-sm"
                     />
-                    <p className="text-xs text-[#8c8c8c]">Public link: /event/your-slug — lowercase letters, numbers, hyphens.</p>
+                    <p className="text-xs text-muted-foreground">Public link: /event/your-slug — lowercase letters, numbers, hyphens.</p>
                   </div>
 
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Subtitle / Artist Lineup</label>
+                    <label className="block text-sm font-medium text-foreground">Subtitle / Artist Lineup</label>
                     <input
                       type="text"
                       value={subtitle}
                       onChange={e => setSubtitle(e.target.value)}
                       placeholder="e.g. Featuring DJ Snake and local artists"
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
-                      <label className="block text-sm font-medium text-[#000000]">Start date & time <span className="text-[#525252]">*</span></label>
+                      <label className="block text-sm font-medium text-foreground">Start date & time <span className="text-muted-foreground">*</span></label>
                       <input
                         type="datetime-local"
                         value={dateTime}
                         onChange={e => setDateTime(e.target.value)}
-                        className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                        className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                       />
                     </div>
                     <div className="space-y-4">
-                      <label className="block text-sm font-medium text-[#000000]">End date & time</label>
+                      <label className="block text-sm font-medium text-foreground">End date & time</label>
                       <input
                         type="datetime-local"
                         value={endDateTime}
                         min={dateTime || undefined}
                         onChange={e => setEndDateTime(e.target.value)}
-                        className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                        className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                       />
-                      <p className="text-xs text-[#8c8c8c]">Optional. Leave empty if the event has no fixed end time.</p>
+                      <p className="text-xs text-muted-foreground">Optional. Leave empty if the event has no fixed end time.</p>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
-                      <label className="block text-sm font-medium text-[#000000]">Age Restriction</label>
+                      <label className="block text-sm font-medium text-foreground">Age Restriction</label>
                       <select
                         value={ageRestriction}
                         onChange={e => setAgeRestriction(e.target.value)}
-                        className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                        className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                       >
                         <option value="">All Ages</option>
                         <option value="12">12+</option>
@@ -593,22 +593,22 @@ export function AdminEventEditor() {
                   </div>
 
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Description</label>
+                    <label className="block text-sm font-medium text-foreground">Description</label>
                     <textarea
                       rows={6}
                       value={description}
                       onChange={e => setDescription(e.target.value)}
                       placeholder="Write a compelling description for the event..."
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all resize-none"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
                     ></textarea>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <label className="block text-sm font-medium text-[#000000]">Event Sponsors</label>
-                      <span className="text-xs text-[#8c8c8c]">{selectedSponsors.length} selected</span>
+                      <label className="block text-sm font-medium text-foreground">Event Sponsors</label>
+                      <span className="text-xs text-muted-foreground">{selectedSponsors.length} selected</span>
                     </div>
-                    <div className="border border-[#e8e8e8] rounded-xl p-4 bg-white max-h-64 overflow-y-auto">
+                    <div className="border border-border rounded-xl p-4 bg-card max-h-64 overflow-y-auto">
                       <div className="space-y-3">
                         {sponsors.map((sponsor) => {
                           const isSelected = selectedSponsors.includes(sponsor.id);
@@ -616,7 +616,7 @@ export function AdminEventEditor() {
                             <label
                               key={sponsor.id}
                               className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-colors ${
-                                isSelected ? 'bg-[#e8e8e8] border border-black' : 'border border-[#e8e8e8] hover:bg-[#e8e8e8]/50'
+                                isSelected ? 'bg-muted border border-black' : 'border border-border hover:bg-muted/50'
                               }`}
                             >
                               <input
@@ -629,26 +629,26 @@ export function AdminEventEditor() {
                                     setSelectedSponsors(selectedSponsors.filter(sid => sid !== sponsor.id));
                                   }
                                 }}
-                                className="w-5 h-5 rounded border-[#8c8c8c] text-black focus:ring-black"
+                                className="w-5 h-5 rounded border-[#8c8c8c] text-foreground focus:ring-primary"
                               />
-                              <div className="w-10 h-10 rounded-lg bg-[#e8e8e8] flex items-center justify-center overflow-hidden flex-shrink-0">
+                              <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center overflow-hidden flex-shrink-0">
                                 {sponsor.logo ? (
                                   <img src={sponsor.logo} alt={sponsor.sponsor_name} className="w-full h-full object-cover" />
                                 ) : (
-                                  <ImageIcon className="w-5 h-5 text-[#8c8c8c]" />
+                                  <ImageIcon className="w-5 h-5 text-muted-foreground" />
                                 )}
                               </div>
-                              <span className="font-medium text-[#000000]">{sponsor.sponsor_name}</span>
+                              <span className="font-medium text-foreground">{sponsor.sponsor_name}</span>
                             </label>
                           );
                         })}
                         {sponsors.length === 0 && (
-                          <p className="text-sm text-[#8c8c8c] text-center py-4">No sponsors available</p>
+                          <p className="text-sm text-muted-foreground text-center py-4">No sponsors available</p>
                         )}
                       </div>
                     </div>
-                    <p className="text-xs text-[#8c8c8c]">
-                      Select sponsors that will be providing services for this event. You can manage sponsors from the <a href="/sponsors" className="text-black hover:underline">Sponsors page</a>.
+                    <p className="text-xs text-muted-foreground">
+                      Select sponsors that will be providing services for this event. You can manage sponsors from the <a href="/sponsors" className="text-foreground hover:underline">Sponsors page</a>.
                     </p>
                   </div>
                 </>
@@ -657,9 +657,9 @@ export function AdminEventEditor() {
               {activeTab === 'media' && (
                 <>
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Cover Photo <span className="text-[#525252]">*</span></label>
+                    <label className="block text-sm font-medium text-foreground">Cover Photo <span className="text-muted-foreground">*</span></label>
                     <div
-                      className="border-2 border-dashed border-[#e8e8e8] rounded-xl p-12 flex flex-col items-center justify-center text-center bg-[#e8e8e8]/50 hover:bg-[#e8e8e8] transition-colors cursor-pointer"
+                      className="border-2 border-dashed border-border rounded-xl p-12 flex flex-col items-center justify-center text-center bg-muted/50 hover:bg-muted transition-colors cursor-pointer"
                       onClick={() => fileInputRef.current?.click()}
                     >
                       {event?.cover_photo ? (
@@ -669,15 +669,15 @@ export function AdminEventEditor() {
                           className="w-full max-h-48 object-cover rounded-lg mb-4"
                         />
                       ) : (
-                        <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center text-[#000000] shadow-sm mb-4">
+                        <div className="w-16 h-16 rounded-full bg-card flex items-center justify-center text-foreground shadow-sm mb-4">
                           <ImageIcon size={28} />
                         </div>
                       )}
-                      <h4 className="text-[#000000] font-medium text-lg mb-1">Click to upload or drag and drop</h4>
-                      <p className="text-[#8c8c8c] text-sm">SVG, PNG, JPG or WebP (max. 5MB)</p>
-                      <p className="text-[#8c8c8c] text-xs mt-2">Recommended: 1920x1080px (16:9 ratio)</p>
+                      <h4 className="text-foreground font-medium text-lg mb-1">Click to upload or drag and drop</h4>
+                      <p className="text-muted-foreground text-sm">SVG, PNG, JPG or WebP (max. 5MB)</p>
+                      <p className="text-muted-foreground text-xs mt-2">Recommended: 1920x1080px (16:9 ratio)</p>
                       {!isEditMode && (
-                        <p className="text-[#8c8c8c] text-xs mt-2 italic">Save the event first to upload a cover photo</p>
+                        <p className="text-muted-foreground text-xs mt-2 italic">Save the event first to upload a cover photo</p>
                       )}
                     </div>
                     <input
@@ -702,20 +702,20 @@ export function AdminEventEditor() {
 
               {activeTab === 'tickets' && (
                 <>
-                  <div className="p-4 bg-white rounded-xl border border-[#e8e8e8] space-y-4 mb-6">
+                  <div className="p-4 bg-card rounded-xl border border-border space-y-4 mb-6">
                     <div>
-                      <label className="block text-sm font-medium text-[#000000] mb-2">Venue seating map</label>
+                      <label className="block text-sm font-medium text-foreground mb-2">Venue seating map</label>
                       <select
                         value={venueTemplateId}
                         onChange={(e) => setVenueTemplateId(e.target.value)}
-                        className="w-full bg-[#e8e8e8] border-none rounded-lg py-3 px-4 text-sm outline-none focus:ring-2 focus:ring-[#000000]"
+                        className="w-full bg-muted border-none rounded-lg py-3 px-4 text-sm outline-none focus:ring-2 focus:ring-primary"
                       >
                         <option value="">None (manual tier grid)</option>
                         {venueTemplates.map((vt) => (
                           <option key={vt.id} value={vt.id}>{vt.name}</option>
                         ))}
                       </select>
-                      <p className="text-xs text-[#8c8c8c] mt-2">
+                      <p className="text-xs text-muted-foreground mt-2">
                         <Link to="/venues" className="underline">Manage venue templates</Link>
                       </p>
                     </div>
@@ -729,14 +729,14 @@ export function AdminEventEditor() {
                           ['regular', 'General Admission (500)'],
                         ].map(([key, label]) => (
                           <div key={key}>
-                            <label className="text-xs text-[#8c8c8c]">{label}</label>
+                            <label className="text-xs text-muted-foreground">{label}</label>
                             <input
                               type="number"
                               value={venueTierPrices[key] ?? 0}
                               onChange={(e) =>
                                 setVenueTierPrices((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))
                               }
-                              className="w-full mt-1 bg-[#e8e8e8] rounded-lg py-2 px-3 text-sm"
+                              className="w-full mt-1 bg-muted rounded-lg py-2 px-3 text-sm"
                             />
                           </div>
                         ))}
@@ -781,12 +781,12 @@ export function AdminEventEditor() {
                     )}
                   </div>
 
-                  <div className="p-4 bg-[#e8e8e8] rounded-lg border border-[#e8e8e8] flex items-center justify-between">
+                  <div className="p-4 bg-muted rounded-lg border border-border flex items-center justify-between">
                     <div>
-                      <h4 className="font-medium text-[#000000]">Base Currency</h4>
-                      <p className="text-sm text-[#8c8c8c]">All ticket prices will be entered in this currency.</p>
+                      <h4 className="font-medium text-foreground">Base Currency</h4>
+                      <p className="text-sm text-muted-foreground">All ticket prices will be entered in this currency.</p>
                     </div>
-                    <select className="bg-white border border-[#e8e8e8] rounded-lg py-2 px-4 focus:border-[#000000] outline-none">
+                    <select className="bg-card border border-border rounded-lg py-2 px-4 focus:border-primary outline-none">
                       <option value="JOD">JOD - Jordanian Dinar</option>
                       <option value="USD">USD - US Dollar</option>
                       <option value="EUR">EUR - Euro</option>
@@ -797,11 +797,11 @@ export function AdminEventEditor() {
                   {!usesVenueTemplate && (
                   <div className="space-y-4 mt-8">
                     <div className="flex justify-between items-center">
-                      <label className="block text-sm font-medium text-[#000000]">Ticket Tiers</label>
+                      <label className="block text-sm font-medium text-foreground">Ticket Tiers</label>
                       <button
                         type="button"
                         onClick={handleAddTier}
-                        className="text-sm text-[#000000] font-medium hover:underline flex items-center gap-1"
+                        className="text-sm text-foreground font-medium hover:underline flex items-center gap-1"
                       >
                         <Plus size={16} /> Add Tier
                       </button>
@@ -811,11 +811,11 @@ export function AdminEventEditor() {
                       <div
                         key={tier.id}
                         id={`admin-tier-card-${tier.id}`}
-                        className="border border-[#e8e8e8] rounded-xl p-5 bg-white space-y-3 scroll-mt-28"
+                        className="border border-border rounded-xl p-5 bg-card space-y-3 scroll-mt-28"
                       >
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
                           <div className="space-y-2 lg:col-span-2">
-                            <label className="block text-xs font-medium text-[#8c8c8c]">Tier Name</label>
+                            <label className="block text-xs font-medium text-muted-foreground">Tier Name</label>
                             <input
                               type="text"
                               value={tier.name}
@@ -825,13 +825,13 @@ export function AdminEventEditor() {
                                 setTiers(newTiers);
                               }}
                               placeholder="e.g. VIP"
-                              className="w-full bg-[#e8e8e8] border-none rounded-lg py-2 px-3 text-sm outline-none focus:ring-2 focus:ring-[#000000]"
+                              className="w-full bg-muted border-none rounded-lg py-2 px-3 text-sm outline-none focus:ring-2 focus:ring-primary"
                             />
                           </div>
                           <div className="space-y-2">
-                            <label className="block text-xs font-medium text-[#8c8c8c]">Price</label>
+                            <label className="block text-xs font-medium text-muted-foreground">Price</label>
                             <div className="relative">
-                              <span className="absolute start-3 top-1/2 -translate-y-1/2 text-[#8c8c8c] text-sm">JOD</span>
+                              <span className="absolute start-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">JOD</span>
                               <input
                                 type="number"
                                 value={tier.price}
@@ -840,12 +840,12 @@ export function AdminEventEditor() {
                                   newTiers[index] = { ...newTiers[index], price: parseFloat(e.target.value), modified: true };
                                   setTiers(newTiers);
                                 }}
-                                className="w-full bg-[#e8e8e8] border-none rounded-lg py-2 ps-12 pe-3 text-sm outline-none focus:ring-2 focus:ring-[#000000]"
+                                className="w-full bg-muted border-none rounded-lg py-2 ps-12 pe-3 text-sm outline-none focus:ring-2 focus:ring-primary"
                               />
                             </div>
                           </div>
                           <div className="space-y-2">
-                            <label className="block text-xs font-medium text-[#8c8c8c]">Number of Seats</label>
+                            <label className="block text-xs font-medium text-muted-foreground">Number of Seats</label>
                             <input
                               type="number"
                               value={tier.seats}
@@ -855,11 +855,11 @@ export function AdminEventEditor() {
                                 setTiers(newTiers);
                               }}
                               placeholder="500"
-                              className="w-full bg-[#e8e8e8] border-none rounded-lg py-2 px-3 text-sm outline-none focus:ring-2 focus:ring-[#000000]"
+                              className="w-full bg-muted border-none rounded-lg py-2 px-3 text-sm outline-none focus:ring-2 focus:ring-primary"
                             />
                           </div>
                           <div className="space-y-2">
-                            <label className="block text-xs font-medium text-[#8c8c8c]">Seats per row</label>
+                            <label className="block text-xs font-medium text-muted-foreground">Seats per row</label>
                             <input
                               type="number"
                               min={1}
@@ -870,11 +870,11 @@ export function AdminEventEditor() {
                                 newTiers[index] = { ...newTiers[index], seatsPerRow: v, modified: true };
                                 setTiers(newTiers);
                               }}
-                              className="w-full bg-[#e8e8e8] border-none rounded-lg py-2 px-3 text-sm outline-none focus:ring-2 focus:ring-[#000000]"
+                              className="w-full bg-muted border-none rounded-lg py-2 px-3 text-sm outline-none focus:ring-2 focus:ring-primary"
                             />
                           </div>
                           <div className="space-y-2">
-                            <label className="block text-xs font-medium text-[#8c8c8c]">First row letter</label>
+                            <label className="block text-xs font-medium text-muted-foreground">First row letter</label>
                             <input
                               type="text"
                               maxLength={1}
@@ -886,11 +886,11 @@ export function AdminEventEditor() {
                                 setTiers(newTiers);
                               }}
                               placeholder="A (optional)"
-                              className="w-full bg-[#e8e8e8] border-none rounded-lg py-2 px-3 text-sm outline-none focus:ring-2 focus:ring-[#000000]"
+                              className="w-full bg-muted border-none rounded-lg py-2 px-3 text-sm outline-none focus:ring-2 focus:ring-primary"
                             />
                           </div>
                           <div className="space-y-2 flex flex-col">
-                            <label className="block text-xs font-medium text-[#8c8c8c]">Actions</label>
+                            <label className="block text-xs font-medium text-muted-foreground">Actions</label>
                             <button
                               type="button"
                               onClick={() => handleRemoveTier(tier)}
@@ -900,7 +900,7 @@ export function AdminEventEditor() {
                             </button>
                           </div>
                         </div>
-                        <p className="text-xs text-[#8c8c8c] leading-relaxed">
+                        <p className="text-xs text-muted-foreground leading-relaxed">
                           Seat labels are generated as row + seat-in-row (e.g. A-0 … A-9, then B-0). Set the first row letter for venues that start at a different block (e.g. M). Leave it blank to start at A. Changing layout on an existing tier updates metadata only; seat numbers are set when the tier is first created.
                         </p>
                       </div>
@@ -913,70 +913,70 @@ export function AdminEventEditor() {
               {activeTab === 'location' && (
                 <>
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Venue Name <span className="text-[#525252]">*</span></label>
+                    <label className="block text-sm font-medium text-foreground">Venue Name <span className="text-muted-foreground">*</span></label>
                     <input
                       type="text"
                       value={location}
                       onChange={e => setLocation(e.target.value)}
                       placeholder="e.g. Wadi Rum Amphitheater"
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     />
                   </div>
 
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Full Address</label>
+                    <label className="block text-sm font-medium text-foreground">Full Address</label>
                     <input
                       type="text"
                       value={fullAddress}
                       onChange={e => setFullAddress(e.target.value)}
                       placeholder="Street address, City, Country"
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
-                      <label className="block text-sm font-medium text-[#000000]">Latitude</label>
+                      <label className="block text-sm font-medium text-foreground">Latitude</label>
                       <input
                         type="text"
                         value={locationLat}
                         onChange={e => setLocationLat(e.target.value)}
                         placeholder="e.g. 29.5734"
-                        className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                        className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                       />
                     </div>
                     <div className="space-y-4">
-                      <label className="block text-sm font-medium text-[#000000]">Longitude</label>
+                      <label className="block text-sm font-medium text-foreground">Longitude</label>
                       <input
                         type="text"
                         value={locationLng}
                         onChange={e => setLocationLng(e.target.value)}
                         placeholder="e.g. 35.3919"
-                        className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                        className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Map Embed URL</label>
+                    <label className="block text-sm font-medium text-foreground">Map Embed URL</label>
                     <input
                       type="url"
                       value={mapEmbedUrl}
                       onChange={e => setMapEmbedUrl(e.target.value)}
                       placeholder="Google Maps embed URL"
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     />
-                    <p className="text-xs text-[#8c8c8c]">Get the embed URL from Google Maps → Share → Embed a map</p>
+                    <p className="text-xs text-muted-foreground">Get the embed URL from Google Maps → Share → Embed a map</p>
                   </div>
 
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Parking Information</label>
+                    <label className="block text-sm font-medium text-foreground">Parking Information</label>
                     <textarea
                       rows={3}
                       value={parkingInfo}
                       onChange={e => setParkingInfo(e.target.value)}
                       placeholder="Describe parking availability and instructions..."
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all resize-none"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
                     ></textarea>
                   </div>
                 </>
@@ -985,29 +985,29 @@ export function AdminEventEditor() {
               {activeTab === 'contact' && (
                 <>
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Organizer Name</label>
+                    <label className="block text-sm font-medium text-foreground">Organizer Name</label>
                     <input
                       type="text"
                       value={contactName}
                       onChange={e => setContactName(e.target.value)}
                       placeholder="e.g. TheAgencyJo Events"
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     />
                   </div>
 
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Contact Email</label>
+                    <label className="block text-sm font-medium text-foreground">Contact Email</label>
                     <input
                       type="email"
                       value={contactEmail}
                       onChange={e => setContactEmail(e.target.value)}
                       placeholder="contact@theagencyjo.com"
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     />
                   </div>
 
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Contact Phone</label>
+                    <label className="block text-sm font-medium text-foreground">Contact Phone</label>
                     <PhoneCountryField
                       country={getCountryByIso(contactPhoneCountryIso) ?? COUNTRY_DIAL_CODES[0]}
                       onCountryChange={(iso) => {
@@ -1029,11 +1029,11 @@ export function AdminEventEditor() {
               {activeTab === 'settings' && (
                 <>
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">{t('admin.event_editor.visibility_label')}</label>
+                    <label className="block text-sm font-medium text-foreground">{t('admin.event_editor.visibility_label')}</label>
                     <select
                       value={visibility}
                       onChange={e => setVisibility(e.target.value as 'public' | 'unlisted')}
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     >
                       <option value="public">{t('admin.event_editor.visibility_public')}</option>
                       <option value="unlisted">{t('admin.event_editor.visibility_unlisted')}</option>
@@ -1041,35 +1041,35 @@ export function AdminEventEditor() {
                   </div>
 
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Sales Start Date</label>
+                    <label className="block text-sm font-medium text-foreground">Sales Start Date</label>
                     <input
                       type="datetime-local"
                       value={salesStartDate}
                       onChange={e => setSalesStartDate(e.target.value)}
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     />
-                    <p className="text-xs text-[#8c8c8c]">When tickets go on sale (leave empty to start immediately)</p>
+                    <p className="text-xs text-muted-foreground">When tickets go on sale (leave empty to start immediately)</p>
                   </div>
 
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Sales End Date</label>
+                    <label className="block text-sm font-medium text-foreground">Sales End Date</label>
                     <input
                       type="datetime-local"
                       value={salesEndDate}
                       onChange={e => setSalesEndDate(e.target.value)}
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     />
-                    <p className="text-xs text-[#8c8c8c]">When ticket sales close (leave empty for event start time)</p>
+                    <p className="text-xs text-muted-foreground">When ticket sales close (leave empty for event start time)</p>
                   </div>
 
                   <div className="space-y-4">
-                    <label className="block text-sm font-medium text-[#000000]">Maximum Tickets Per Order</label>
+                    <label className="block text-sm font-medium text-foreground">Maximum Tickets Per Order</label>
                     <input
                       type="number"
                       value={maxTicketsPerOrder}
                       onChange={e => setMaxTicketsPerOrder(e.target.value)}
                       placeholder="e.g. 10"
-                      className="w-full bg-[#e8e8e8] border border-transparent rounded-lg py-3 px-4 text-base focus:bg-white focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/20 outline-none transition-all"
+                      className="w-full bg-muted border border-transparent rounded-lg py-3 px-4 text-base focus:bg-card focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                     />
                   </div>
 

@@ -122,8 +122,8 @@ export function AdminActivityLogs() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-[#000000]">{t('admin.activity.title')}</h1>
-          <p className="text-sm text-[#8c8c8c] mt-1">{t('admin.activity.subtitle')}</p>
+          <h1 className="text-2xl font-bold text-foreground">{t('admin.activity.title')}</h1>
+          <p className="text-sm text-muted-foreground mt-1">{t('admin.activity.subtitle')}</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <AdminRefreshButton onClick={() => void refetch()} isFetching={isFetching} />
@@ -131,7 +131,7 @@ export function AdminActivityLogs() {
             type="button"
             onClick={exportPage}
             disabled={!data?.data.length}
-            className="px-4 py-2 border border-[#e8e8e8] bg-white rounded-lg text-sm font-medium hover:bg-[#e8e8e8] transition-colors flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 border border-border bg-card rounded-lg text-sm font-medium hover:bg-muted transition-colors flex items-center gap-2 disabled:opacity-50"
           >
             <Download size={16} />
             {t('admin.activity.export')}
@@ -139,13 +139,13 @@ export function AdminActivityLogs() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-[#e8e8e8] p-4 flex flex-wrap gap-3 items-end">
+      <div className="bg-card rounded-xl border border-border p-4 flex flex-wrap gap-3 items-end">
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-medium text-[#8c8c8c] uppercase tracking-wider">{t('admin.activity.action')}</label>
+          <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t('admin.activity.action')}</label>
           <select
             value={action}
             onChange={(e) => { setAction(e.target.value); resetPagination(); }}
-            className="border border-[#e8e8e8] rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#000000] outline-none bg-white min-w-[160px]"
+            className="border border-border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary outline-none bg-card min-w-[160px]"
           >
             <option value="">{t('admin.activity.all_actions')}</option>
             {ACTION_OPTIONS.map((a) => <option key={a} value={a}>{a}</option>)}
@@ -153,11 +153,11 @@ export function AdminActivityLogs() {
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-medium text-[#8c8c8c] uppercase tracking-wider">{t('admin.activity.resource_type')}</label>
+          <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t('admin.activity.resource_type')}</label>
           <select
             value={resourceType}
             onChange={(e) => { setResourceType(e.target.value); resetPagination(); }}
-            className="border border-[#e8e8e8] rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#000000] outline-none bg-white min-w-[140px]"
+            className="border border-border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary outline-none bg-card min-w-[140px]"
           >
             <option value="">{t('admin.activity.all_types')}</option>
             {RESOURCE_OPTIONS.map((r) => <option key={r} value={r}>{r}</option>)}
@@ -165,22 +165,22 @@ export function AdminActivityLogs() {
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-medium text-[#8c8c8c] uppercase tracking-wider">{t('admin.activity.from')}</label>
+          <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t('admin.activity.from')}</label>
           <input
             type="datetime-local"
             value={from}
             onChange={(e) => { setFrom(e.target.value); resetPagination(); }}
-            className="border border-[#e8e8e8] rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#000000] outline-none"
+            className="border border-border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary outline-none"
           />
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-medium text-[#8c8c8c] uppercase tracking-wider">{t('admin.activity.to')}</label>
+          <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{t('admin.activity.to')}</label>
           <input
             type="datetime-local"
             value={to}
             onChange={(e) => { setTo(e.target.value); resetPagination(); }}
-            className="border border-[#e8e8e8] rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#000000] outline-none"
+            className="border border-border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary outline-none"
           />
         </div>
 
@@ -188,14 +188,14 @@ export function AdminActivityLogs() {
           <button
             type="button"
             onClick={() => { setAction(""); setResourceType(""); setFrom(""); setTo(""); resetPagination(); }}
-            className="px-4 py-2 text-sm text-[#8c8c8c] hover:text-[#000000] border border-[#e8e8e8] rounded-lg hover:border-[#000000] transition-colors self-end"
+            className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground border border-border rounded-lg hover:border-[#000000] transition-colors self-end"
           >
             {t('admin.common.clear_filters')}
           </button>
         )}
       </div>
 
-      <div className="bg-white rounded-xl border border-[#e8e8e8] overflow-hidden">
+      <div className="bg-card rounded-xl border border-border overflow-hidden">
         <div className="admin-table-wrap min-w-0">
           <table className="w-full min-w-[72rem] table-fixed border-collapse text-sm admin-table">
             <colgroup>
@@ -208,14 +208,14 @@ export function AdminActivityLogs() {
               <col style={{ width: '10%' }} />
             </colgroup>
             <thead>
-              <tr className="border-b border-[#e8e8e8] bg-[#e8e8e8]">
-                <th className="text-start px-6 py-4 text-xs font-semibold text-[#8c8c8c] uppercase tracking-wider whitespace-nowrap">{t('admin.activity.timestamp')}</th>
-                <th className="text-start px-6 py-4 text-xs font-semibold text-[#8c8c8c] uppercase tracking-wider whitespace-nowrap">{t('admin.activity.actor')}</th>
-                <th className="text-start px-6 py-4 text-xs font-semibold text-[#8c8c8c] uppercase tracking-wider whitespace-nowrap">{t('admin.activity.action')}</th>
-                <th className="text-start px-6 py-4 text-xs font-semibold text-[#8c8c8c] uppercase tracking-wider whitespace-nowrap">{t('admin.activity.resource_type')}</th>
-                <th className="text-start px-6 py-4 text-xs font-semibold text-[#8c8c8c] uppercase tracking-wider whitespace-nowrap">{t('admin.activity.resource_id')}</th>
-                <th className="text-start px-6 py-4 text-xs font-semibold text-[#8c8c8c] uppercase tracking-wider whitespace-nowrap">{t('admin.activity.details')}</th>
-                <th className="text-start px-6 py-4 text-xs font-semibold text-[#8c8c8c] uppercase tracking-wider whitespace-nowrap">{t('admin.activity.ip')}</th>
+              <tr className="border-b border-border bg-muted">
+                <th className="text-start px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap">{t('admin.activity.timestamp')}</th>
+                <th className="text-start px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap">{t('admin.activity.actor')}</th>
+                <th className="text-start px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap">{t('admin.activity.action')}</th>
+                <th className="text-start px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap">{t('admin.activity.resource_type')}</th>
+                <th className="text-start px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap">{t('admin.activity.resource_id')}</th>
+                <th className="text-start px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap">{t('admin.activity.details')}</th>
+                <th className="text-start px-6 py-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap">{t('admin.activity.ip')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#e8e8e8]">
@@ -224,46 +224,46 @@ export function AdminActivityLogs() {
                   <tr key={i} className="hover:bg-transparent">
                     {[...Array(7)].map((__, j) => (
                       <td key={j} className="px-6 py-4">
-                        <div className="h-4 bg-[#e8e8e8] rounded animate-pulse" />
+                        <div className="h-4 bg-muted rounded animate-pulse" />
                       </td>
                     ))}
                   </tr>
                 ))
               ) : data?.data.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-12 text-center text-[#8c8c8c]">
+                  <td colSpan={7} className="px-6 py-12 text-center text-muted-foreground">
                     {t('admin.activity.none')}
                   </td>
                 </tr>
               ) : (
                 data?.data.map((log) => (
                   <tr key={log.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 align-top text-[#8c8c8c] whitespace-nowrap tabular-nums text-sm">
+                    <td className="px-6 py-4 align-top text-muted-foreground whitespace-nowrap tabular-nums text-sm">
                       {formatDateTime(log.created_at)}
                     </td>
                     <td className="px-6 py-4 align-top text-start min-w-0">
                       {log.user ? (
                         <div>
-                          <div className="font-medium text-[#000000] truncate">
+                          <div className="font-medium text-foreground truncate">
                             {log.user.first_name} {log.user.last_name}
                           </div>
-                          <div className="text-xs text-[#8c8c8c] truncate">{log.user.email}</div>
+                          <div className="text-xs text-muted-foreground truncate">{log.user.email}</div>
                         </div>
                       ) : (
-                        <span className="text-[#8c8c8c]">—</span>
+                        <span className="text-muted-foreground">—</span>
                       )}
                     </td>
                     <td className="px-6 py-4 align-top text-start">
                       <ActionBadge action={log.action} />
                     </td>
-                    <td className="px-6 py-4 align-top text-start text-[#8c8c8c] truncate">{log.resource_type}</td>
-                    <td className="px-6 py-4 align-top text-start font-mono text-xs text-[#8c8c8c] tabular-nums">
+                    <td className="px-6 py-4 align-top text-start text-muted-foreground truncate">{log.resource_type}</td>
+                    <td className="px-6 py-4 align-top text-start font-mono text-xs text-muted-foreground tabular-nums">
                       {log.resource_id ? `${log.resource_id.slice(0, 8)}…` : "—"}
                     </td>
-                    <td className="px-6 py-4 align-top text-start text-[#8c8c8c] min-w-0 truncate">
+                    <td className="px-6 py-4 align-top text-start text-muted-foreground min-w-0 truncate">
                       {formatDetails(log.details)}
                     </td>
-                    <td className="px-6 py-4 align-top text-start text-[#8c8c8c] font-mono text-xs tabular-nums">
+                    <td className="px-6 py-4 align-top text-start text-muted-foreground font-mono text-xs tabular-nums">
                       {log.ip_address ?? "—"}
                     </td>
                   </tr>
@@ -273,24 +273,24 @@ export function AdminActivityLogs() {
           </table>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-6 py-4 border-t border-[#e8e8e8]">
-          <span className="text-sm text-[#8c8c8c]">{rangeLabel}</span>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-6 py-4 border-t border-border">
+          <span className="text-sm text-muted-foreground">{rangeLabel}</span>
           <div className="flex gap-2 items-center">
             <button
               type="button"
               onClick={() => setOffset(Math.max(0, offset - PAGE_SIZE))}
               disabled={offset === 0 || isLoading}
-              className="p-2 rounded-lg border border-[#e8e8e8] hover:border-[#000000] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="p-2 rounded-lg border border-border hover:border-[#000000] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               aria-label={t('admin.common.previous')}
             >
               <ChevronLeft size={16} className="rtl:rotate-180" />
             </button>
-            <span className="px-3 py-2 text-sm text-[#8c8c8c]">{page} / {totalPages}</span>
+            <span className="px-3 py-2 text-sm text-muted-foreground">{page} / {totalPages}</span>
             <button
               type="button"
               onClick={() => setOffset(offset + PAGE_SIZE)}
               disabled={offset + PAGE_SIZE >= total || isLoading}
-              className="p-2 rounded-lg border border-[#e8e8e8] hover:border-[#000000] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="p-2 rounded-lg border border-border hover:border-[#000000] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               aria-label={t('admin.common.next')}
             >
               <ChevronRight size={16} className="rtl:rotate-180" />
