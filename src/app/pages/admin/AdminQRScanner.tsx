@@ -136,7 +136,7 @@ export function AdminQRScanner() {
       case 'valid': return 'bg-green-600';
       case 'duplicate': return 'bg-red-600';
       case 'invalid': return 'bg-yellow-500';
-      default: return 'bg-primary';
+      default: return 'bg-[#0A0A0A]';
     }
   };
 

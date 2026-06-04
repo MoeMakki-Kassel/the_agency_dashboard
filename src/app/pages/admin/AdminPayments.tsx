@@ -161,7 +161,7 @@ export function AdminPayments() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-primary text-[#e8e8e8] p-6 rounded-xl shadow-lg relative overflow-hidden">
+        <div className="bg-card text-card-foreground p-6 rounded-xl border border-border shadow-[0_8px_24px_rgba(0,0,0,0.5)] relative overflow-hidden">
           <div className="absolute end-0 top-0 w-32 h-32 bg-primary/20 rounded-full blur-2xl -me-10 -mt-10"></div>
           <p className="text-sm font-medium text-white/70 mb-2">{t('admin.payments.balance')}</p>
           <h3 className="text-4xl font-bold font-['Space_Grotesk'] mb-2">
